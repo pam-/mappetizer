@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006175753) do
+ActiveRecord::Schema.define(version: 20141006214028) do
+
+  create_table "activities", force: true do |t|
+    t.string  "name"
+    t.integer "category"
+    t.integer "event_id"
+    t.string  "event_url"
+    t.integer "outing_id"
+  end
+
+  add_index "activities", ["outing_id"], name: "index_activities_on_outing_id"
+
+  create_table "outings", force: true do |t|
+    t.string  "name"
+    t.string  "date"
+    t.string  "city"
+    t.integer "user_id"
+  end
+
+  add_index "outings", ["user_id"], name: "index_outings_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,3 +1,3 @@
-class Outing < ActiveRecord::Base 
-	belongs_to :user
+class Activity < ActiveRecord::Base 
+	belongs_to :outing
 end

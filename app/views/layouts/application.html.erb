@@ -10,7 +10,18 @@
 </head>
 <body>
 
-	<div id="map"></div>
+	<header>
+		<ul>
+			<div class="button-group">
+	      <% if !user_signed_in? %>
+				 <%= link_to "Sign in", new_user_session_path, class: "button"%>
+	       <%= link_to "Register", new_user_registration_path, class: "button" %>
+	       <% else %>
+				<%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "button" %>
+	      <% end %>
+			</div>
+		</ul>
+	</header>
 
 <%= yield %>
 

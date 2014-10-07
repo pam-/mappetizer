@@ -6,25 +6,33 @@ function ready(){
 
 	geocoder = L.mapbox.geocoder('mapbox.places-city-v1'),
   map = L.mapbox.map('map', 'pam-.jmeb29bh');
-	
+	$('.save_location').hide()
 	$('.container input[type="text"]').keypress(function(event){
 		if(event.which === 13) {
 			event.preventDefault();
 			var userLocation = $(this).val();
 			console.log(userLocation)
-			$.ajax({
-				type: 'POST',
-				url: '/outings',
-				dataType: 'json',
-				data: {
-					outing: {
-						// name: 
-						// date:
-						city: userLocation
+			mapGen(userLocation)
+			$('.save_location').show()
+			$('.save_location').html("<p>Save outing in " + userLocation + ".</p>");
+			$('.save_location').on("click", function(event){
+				$.ajax({
+					type: 'POST',
+					url: '/outings',
+					dataType: 'json',
+					data: {
+						outing: {
+							// name: 
+							// date:
+							city: userLocation
+						}
+					},
+					success: function(){
+						$('.save_location').hide()
 					}
-				},
-				success: mapGen(userLocation)
-			})
+				})				
+				});
+
 			eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&categories=103&start_date.range_start=2014-10-10T15%3A21%3A13Z&start_date.range_end=2014-10-12T15%3A03%3A22Z&token=4AP25GNUCXVYPVTGLP3V'
 			$.ajax({
 				type: 'GET',
@@ -36,6 +44,11 @@ function ready(){
 			})
 		}
 	})
+}
+
+function sideBar(){
+	
+
 }
 
 function render(result){

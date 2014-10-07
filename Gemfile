@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'mail'
+# facilitates Action Mailer to send emails from rails app
 gem 'figaro'
 
 gem 'devise'

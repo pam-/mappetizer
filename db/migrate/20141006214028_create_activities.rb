@@ -5,7 +5,6 @@ class CreateActivities < ActiveRecord::Migration
       t.integer :category
       t.integer :event_id
       t.string :event_url
-      t.references :outing, index: true
     end
   end
 end

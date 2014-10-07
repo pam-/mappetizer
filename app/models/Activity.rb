@@ -1,3 +1,3 @@
 class Activity < ActiveRecord::Base 
-	belongs_to :outing
+	has_and_belongs_to_many :outings
 end

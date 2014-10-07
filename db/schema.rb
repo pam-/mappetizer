@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006214028) do
+ActiveRecord::Schema.define(version: 20141007145622) do
 
   create_table "activities", force: true do |t|
     t.string  "name"
     t.integer "category"
     t.integer "event_id"
     t.string  "event_url"
-    t.integer "outing_id"
   end
 
-  add_index "activities", ["outing_id"], name: "index_activities_on_outing_id"
+  create_table "activities_outings", id: false, force: true do |t|
+    t.integer "activity_id", null: false
+    t.integer "outing_id",   null: false
+  end
 
   create_table "outings", force: true do |t|
     t.string  "name"

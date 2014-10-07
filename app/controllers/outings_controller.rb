@@ -5,6 +5,7 @@ class OutingsController < ApplicationController
 	def index
 	  # @outings = Outing.order(:created_at)
 	  @outings = Outing.all
+	  @outing = Outing.where(user_id: current_user.id).last
 
 	  respond_to do |format|
 	  	format.html
@@ -48,7 +49,7 @@ class OutingsController < ApplicationController
 	private
 
 	def outing_params
-	  params.require(:outing).permit(:name, :date, :city)
+	  params.require(:outing).permit(:name, :date, :city, :user_id)
 	end	
 
 end

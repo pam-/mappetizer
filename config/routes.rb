@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   resources :outings 
   resources :activities
+  resources :users, only: [:show]
 
 end

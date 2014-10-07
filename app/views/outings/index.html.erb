@@ -1,25 +1,14 @@
-<div class="row">
+<div class="row container" data-id="<%= current_user.id %>">
 
 	<div class="small-4 columns">	
 
 		<form>
 			<input type="text" id="location" placeholder="City, ST">
 			<span><div class="button small save_location"></div></span>
+			<%=link_to 'Show Outings', user_path(current_user) %>
+			<input type="text" label="Outing Name:" id="outing_name" placeholder="">
+
 		</form>
-
-		<% @outings.each do |o| %>
-			<div>
-				<ul>
-					<li><%= o.name  %></li>
-					<li><%= o.date  %></li>
-					<li><%= o.city  %></li>
-					<li><%= link_to 'View', outing_path(o)  %></li>
-					<li><%= link_to 'Edit', edit_outing_path(o) %></li>
-					<li><%= link_to 'Delete', outing_path(o), method: :delete %></li>
-				</ul>			
-			</div>
-		<% end %>
-
 	</div>	
 
 	<div class="small-8 columns" id="map">

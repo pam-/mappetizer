@@ -6,7 +6,9 @@ function ready(){
 
 	geocoder = L.mapbox.geocoder('mapbox.places-city-v1'),
   map = L.mapbox.map('map', 'pam-.jmeb29bh');
+	var userId = $('.row').data('id')
 	$('.save_location').hide()
+	$('#outing_name').hide()
 	$('.container input[type="text"]').keypress(function(event){
 		if(event.which === 13) {
 			event.preventDefault();
@@ -22,13 +24,14 @@ function ready(){
 					dataType: 'json',
 					data: {
 						outing: {
-							// name: 
+							name: userLocation + 'Outing',  
 							// date:
+							user_id: userId,
 							city: userLocation
 						}
 					},
 					success: function(){
-						$('.save_location').hide()
+						sideBar();
 					}
 				})				
 				});
@@ -47,7 +50,8 @@ function ready(){
 }
 
 function sideBar(){
-	
+	$('.save_location').hide()
+	$('#outing_name').show().attr('placeholder', userLocation)	
 
 }
 

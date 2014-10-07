@@ -2,3 +2,23 @@
 	width: 50%;
 	height: 500px;
 }
+*{
+	box-sizing:border-box;
+}
+
+.logo{
+	margin: auto;
+	text-align: center;
+	padding: 1em .5em .5em .5em;
+	font-size: 4em;
+}
+
+.button-group{
+	text-align:center;
+	margin: .3em;
+	padding: .5em;
+}
+
+.space{
+	padding: .3em 0em .3em 1em;
+}

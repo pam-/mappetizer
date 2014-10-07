@@ -10,8 +10,10 @@
 		    <span class="space"></span>
 	       	<%= link_to "Register", new_user_registration_path, class: "button large radius"%>
 	       <% else %>
-<!-- 	       placeholder for other view
- -->	      <% end %>
+	       	<%= link_to "My Outings", user_path(current_user), class: "button large radius"%>
+	       <span class="space"></span>
+	       	<%= link_to "Create an Outing", outings_path, class: "button large radius"%>
+ 	      <% end %>
 	   </div>
 	 </ul>
 	</div>

@@ -31,7 +31,7 @@ function ready(){
 						}
 					},
 					success: function(){
-						sideBar();
+						sideBar(userLocation);
 					}
 				})				
 				});
@@ -49,10 +49,23 @@ function ready(){
 	})
 }
 
-function sideBar(){
-	$('.save_location').hide()
-	$('#outing_name').show().attr('placeholder', userLocation)	
-
+function sideBar(userLocation){
+	$('.save_location').hide();
+	$('#outing_name').show().attr('placeholder', userLocation + ' outing');	
+	$('#outing_name').keypress(function(event){
+		if(event.which === 13){
+			event.preventDefault();
+			var outingName = $(this).val();
+			$.ajax({
+				type: 'PATCH',
+				url: 'outings/' + outingId,
+				data: { outing: { name: outingName } },
+				success: function(){
+					// change name on screen 
+				}
+			})
+		}
+	})
 }
 
 function render(result){

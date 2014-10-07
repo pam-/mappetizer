@@ -1,9 +1,14 @@
 class OutingsController < ApplicationController
 
-	before_action :authenticate_user!, except: [:show, :index]
+	# before_action :authenticate_user!, except: [:show, :index]
 
 	def index
 	  @outings = Outing.order(:created_at)
+
+	  respond_to do |format|
+	  	format.html
+	  	format.json { render json: @pins }
+	  end 
 	end
 
 	def new
@@ -19,11 +24,17 @@ class OutingsController < ApplicationController
 	end
 
 	def create
-	  @outing = Outing.new(outing_params.merge(user_id: current_user.id))
+	  @outing = Outing.new(outing_params)#.merge(user_id: current_user.id))
 	  if @outing.save
-	    redirect_to @outing
+	    respond_to do |format|
+	    	format.html { redirect_to @outing }
+	    	format.json { render json: @outing }
+	    end 
 	  else
-	    render :new
+	    respond_to do |format|
+	    	format.html { redirect_to new_outing_path }
+	    	format.json { render status: 404}
+	    end 
 	  end
 	end
 

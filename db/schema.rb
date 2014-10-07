@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(version: 20141007145622) do
     t.integer "category"
     t.integer "event_id"
     t.string  "event_url"
+    t.integer "outing_id"
   end
+
+  add_index "activities", ["outing_id"], name: "index_activities_on_outing_id"
 
   create_table "activities_outings", id: false, force: true do |t|
     t.integer "activity_id", null: false

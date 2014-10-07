@@ -1,1 +1,25 @@
-<h1>Welcome to Mappetizer!</h1>
+<div class="row">
+  <div class="small-12 columns">
+     <h1 class="logo">Mappetizer.</h1>
+   <div class="row">  
+   	<div class="small-12 columns">
+     <ul>
+	   <div class="button-group">
+	      <% if !user_signed_in? %>
+		    <%= link_to "Sign in", new_user_session_path, class: "button large radius"%>
+		    <span class="space"></span>
+	       	<%= link_to "Register", new_user_registration_path, class: "button large radius"%>
+	       <% else %>
+<!-- 	       placeholder for other view
+ -->	      <% end %>
+	   </div>
+	 </ul>
+	</div>
+  	</div>
+  </div>
+
+
+
+		
+
+</div>

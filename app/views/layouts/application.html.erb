@@ -1,27 +1,81 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Mappetizer</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title><%= content_for?(:title) ? yield(:title) : "Mappetizer" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
 	<header>
-		<ul>
-			<div class="button-group">
-	      <% if !user_signed_in? %>
-				 <%= link_to "Sign in", new_user_session_path, class: "button"%>
-	       <%= link_to "Register", new_user_registration_path, class: "button" %>
-	       <% else %>
-				<%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "button" %>
-	      <% end %>
-			</div>
-		</ul>
+		<div class="sticky">
+    		<nav class="top-bar">
+		        <ul class="title-area">
+		          <li class="name">
+		             <h1><a href="/">Mappetizer</a></h1>
+		          </li>
+		          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a>
+		          </li>
+		        </ul>
+				<section class="top-bar-section">
+		    	  <ul class="left">
+		            <li class="divider"></li>
+		            <li><a href="#">Main Item 1</a></li>
+		            <li class="divider"></li>
+		            <li><a href="#">Main Item 2</a></li>
+		            <li class="divider"></li>
+					<li class="has-dropdown"><a href="#">Main Item 3</a>
+					    <ul class="dropdown">
+					      <li><a href="#">Dropdown Level 3a</a></li>
+					      <li><a href="#">Dropdown Level 3b</a></li>
+					      <li><a href="#">Dropdown Level 3c</a></li>
+					    </ul>
+					</li>
+					<li class="divider"></li>
+		          </ul>
+				  <ul class="right">
+		            <li class="divider"></li>
+		            <% if user_signed_in? %>
+		              <li><a href="#"></a>
+		              <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+		            <% else %>
+		              <li><a href="#"></a>
+		              <%= link_to('Login', new_user_session_path)  %></li>
+		              <li class="divider"></li>
+		              <li><a href="#"></a>
+		              <%= link_to('Register', new_user_registration_path) %></li>
+		              <li class="divider"></li>
+			        <% end %>
+		          </ul>
+		        </section>     	
+		    </nav>
+        </div>
 	</header>
+    <%= yield %>
+  	
+    <div class="full-width footer-area">
+      <div class="row">
+        <div class="large-12 columns">
+          About Us
+ 	      Blog
+  	      Press
+  	      Jobs
+  	      Privacy
+  	      Terms
+          <span>
+    	    &copy; 2014 Mappetizer
+  	      </span>
+        </div>
+      </div>
+    </div>
+  	<footer>
 
-<%= yield %>
-
-</body>
+	</footer>
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>

@@ -3,7 +3,8 @@ class OutingsController < ApplicationController
 	# before_action :authenticate_user!, except: [:show, :index]
 
 	def index
-	  @outings = Outing.order(:created_at)
+	  # @outings = Outing.order(:created_at)
+	  @outings = Outing.all
 
 	  respond_to do |format|
 	  	format.html

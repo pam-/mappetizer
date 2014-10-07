@@ -7,7 +7,7 @@ class OutingsController < ApplicationController
 
 	  respond_to do |format|
 	  	format.html
-	  	format.json { render json: @pins }
+	  	format.json { render json: @outings }
 	  end 
 	end
 

@@ -1,3 +1,4 @@
+var myLayer;
 function ready(){
 	var events = [];
 	$('.container input[type="text"]').keypress(function(event){
@@ -33,8 +34,36 @@ function ready(){
 function render(result){
 	for(i=0; i < result.length; i++){
 		event = result[i];
-		console.log(event.venue.address.address_1)
+		console.log(event.venue)
+		markerGen(event.venue.latitude, event.venue.longitude, event.venue.name)
 	}
+}
+
+function markerGen(longitude, latitude, venue_name){
+	var geojson = {
+		type: 'FeatureCollection',
+		features: [{
+			type: 'Feature',
+			properties: {
+				title: venue_name,
+				'marker-color': '#D79488',
+				'marker-size': 'large',
+				// url
+			},
+			geometry: {
+				type: 'Point',
+				coordinates: [longitude, latitude]
+			}
+		}]
+	}
+	console.log('here')
+	myLayer.setGeoJSON(geojson);
+	myLayer.on('mouseover', function(e){
+		e.layer.openPopup();
+	});
+	myLayer.on('mouseout', function(e){
+		e.layer.closePopup();
+	});
 }
 
 function mapGen(userLocation){
@@ -43,6 +72,7 @@ function mapGen(userLocation){
 
 	var geocoder = L.mapbox.geocoder('mapbox.places-v1'),
   map = L.mapbox.map('map', 'pam-.jmeb29bh');
+  myLayer = L.mapbox.featureLayer().addTo(map);
 	geocoder.query(userLocation, showMap);
 
 	function showMap(err, data) {

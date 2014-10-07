@@ -1,6 +1,12 @@
 var myLayer;
+var geocoder;
 function ready(){
-	var events = [];
+
+	L.mapbox.accessToken = 'pk.eyJ1IjoicGFtLSIsImEiOiJNT09NSzgwIn0.AWl1AY_kO1HMnFHwxb9mww';
+
+	geocoder = L.mapbox.geocoder('mapbox.places-city-v1'),
+  map = L.mapbox.map('map', 'pam-.jmeb29bh');
+	
 	$('.container input[type="text"]').keypress(function(event){
 		if(event.which === 13) {
 			event.preventDefault();
@@ -24,6 +30,7 @@ function ready(){
 				type: 'GET',
 				url: eventUrl,
 				success: function(result){
+					console.log(result.events)
 					return render(result.events)
 				}
 			})
@@ -34,12 +41,13 @@ function ready(){
 function render(result){
 	for(i=0; i < result.length; i++){
 		event = result[i];
-		console.log(event.venue)
-		markerGen(event.venue.latitude, event.venue.longitude, event.venue.name)
+		// console.log(event.venue)
+		markerGen(event.venue.longitude, event.venue.latitude, event.venue.name)
 	}
 }
 
 function markerGen(longitude, latitude, venue_name){
+	myLayer = L.mapbox.featureLayer().addTo(map);
 	var geojson = {
 		type: 'FeatureCollection',
 		features: [{
@@ -67,12 +75,6 @@ function markerGen(longitude, latitude, venue_name){
 }
 
 function mapGen(userLocation){
-
-	L.mapbox.accessToken = 'pk.eyJ1IjoicGFtLSIsImEiOiJNT09NSzgwIn0.AWl1AY_kO1HMnFHwxb9mww';
-
-	var geocoder = L.mapbox.geocoder('mapbox.places-v1'),
-  map = L.mapbox.map('map', 'pam-.jmeb29bh');
-  myLayer = L.mapbox.featureLayer().addTo(map);
 	geocoder.query(userLocation, showMap);
 
 	function showMap(err, data) {

@@ -23,18 +23,19 @@ function ready(){
 				type: 'GET',
 				url: eventUrl,
 				success: function(result){
-					console.log(result)
+					return render(result.events)
 				}
 			})
 		}
 	})
 }
 
-// function render(result){
-// 	for(i=0; i < result.length; i++){
-
-// 	}
-// }
+function render(result){
+	for(i=0; i < result.length; i++){
+		event = result[i];
+		console.log(event.venue.address.address_1)
+	}
+}
 
 function mapGen(userLocation){
 

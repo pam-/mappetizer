@@ -200,7 +200,7 @@ function displayActivityInfo(name){
 	var actInfoContainer = $('.new_activity_info');
 	actInfoContainer.addClass('active');
 
-	$(actInfoContainer, 'h2').html(name);
+	$(actInfoContainer, 'h2').append(name);
 }
 
 $(document).ready(ready);

@@ -36,15 +36,6 @@ function ready(){
 				}
 			})			
 
-			// $('#outing_name').show();
-			// nameField.attr('placeholder', outingName);
-			// nameField.keypress(function(event){
-			// 	if(event.which === 13){
-			// 		event.preventDefault();
-			// 		outingName = $(this).val();
-			// 	}
-			// })
-
 			locationConfirm.show()
 			locationConfirm.html('<p>Save ' + userLocation + ' outing.</p>');
 			locationConfirm.on('click', function(event){

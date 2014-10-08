@@ -3,7 +3,6 @@ class OutingsController < ApplicationController
 	# before_action :authenticate_user!, except: [:show, :index]
 
 	def index
-	  # @outings = Outing.order(:created_at)
 	  @outings = Outing.all
 	  @outing = Outing.where(user_id: current_user.id).last
 

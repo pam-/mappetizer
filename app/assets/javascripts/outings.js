@@ -26,7 +26,7 @@ function ready(){
 			mapGen(userLocation)
 
 			//Generating markers
-			eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&categories=103&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=4AP25GNUCXVYPVTGLP3V'
+			eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&categories=103&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=7LJ23Y6JWNBM7WUIJ424'
 			$.ajax({
 				type: 'GET',
 				url: eventUrl,
@@ -71,22 +71,32 @@ function render(result){
 		event = result[i];
 		longitude = event.venue.longitude;
 		latitude = event.venue.latitude;
+		name = event.name.text;
+		description = event.description.html;
+		venue = event.venue.name;
+		start = event.start.utc;
+		end = event.end.utc;
+		url = event.resource_uri;
 
-		markerGen(longitude, latitude, event.venue.name)
+		markerGen(longitude, latitude, name, description, venue, start, end, url);
 	}
 }
 
-function markerGen(longitude, latitude, venue_name){
+function markerGen(longitude, latitude, event_name, event_description, event_venue, event_start, event_end, event_url){
 	myLayer = L.mapbox.featureLayer().addTo(map);
 	var geojson = {
 		type: 'FeatureCollection',
 		features: [{
 			type: 'Feature',
 			properties: {
-				title: venue_name,
+				title: event_name,
+				// description: event_description,
+				// venue: event_venue,
+				// start: event_start,
+				// end: event_end,
 				'marker-color': '#D79488',
 				'marker-size': 'large',
-				url: venue_url
+				url: event_url
 			},
 			geometry: {
 				type: 'Point',
@@ -94,44 +104,49 @@ function markerGen(longitude, latitude, venue_name){
 			}
 		}]
 	}
-	console.log('here')
-	var marker = event.layer
-	feature = marker.feature
-	popupContent = '<p>' + feature.event_name + '</p> <p>' + feature.event_description + '</p><p>' + feature.event_start + '-' + feature.event_end + '</p> <p>Click me to confirm this event</p>' 
+	console.log('here') 
 
 	myLayer.setGeoJSON(geojson);
+
 	myLayer.on('mouseover', function(event){
+		var marker = event.layer;
+	feature = marker.feature;
+	popupContent = '<p>' + feature.event_name + '</p><p>Click me to confirm this event</p>';
 		event.layer.openPopup(popupContent);
 	});
 	myLayer.on('mouseout', function(event){
-		event.layer.closePopup(popupContent);
+		event.layer.closePopup();
 	});
 
 	myLayer.on('click', function(event){
 		event.layer.unbindPopup();
-		url = event.layer.feature.properties.url + accessToken
+		url = event.layer.feature.properties.url + '?token=4AP25GNUCXVYPVTGLP3V'
+		// console.log(url)
 		$.ajax({
 			type: 'GET',
 			url: url,
 			success: function(result){
-				// other ajax request
-				$.ajax({
-					type: 'POST',
-					url: '/activities',
-					data: {
-						activity: {
-							name: ,
-							category: ,
-							event_id: ,
-							event_url: 
-						}
-					},
-					success: function(){
-						// put that shit in the sidebar
-					}
-				})
+				save(result);
 			}
 		})
+	})
+}
+
+function save(result){
+	$.ajax({
+		type: 'POST',
+		url: '/activities',
+		data: {
+			activity: {
+				name: result.name,
+				category: result.category.name,
+				event_id: result.id,
+				event_url: result.url
+			}
+		},
+		success: function(){
+			console.log('something happened')
+		}
 	})
 }
 

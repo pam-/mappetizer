@@ -5,11 +5,12 @@
 		<form>
 			<input type="text" id="location" placeholder="City, ST">
 			<span><div class="button small save_location"></div></span>
-			<%=link_to 'Show Outings', user_path(current_user) %>
 			<input type="text" label="Outing Name:" id="outing_name" placeholder="">
-
 		</form>
+
+			<%=link_to 'Show Outings', user_path(current_user) %>
 	</div>	
+
 
 	<div class="small-8 columns" id="map">
 		<!-- map goes here -->

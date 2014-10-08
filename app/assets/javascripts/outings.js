@@ -7,7 +7,6 @@ function ready(){
   map = L.mapbox.map('map', 'pam-.jmeb29bh');
 
 	var locationConfirm = $('.save_location');
-	var date = $('input[type="date"]').val();
 	locationConfirm.hide();
 	$('#outing_name').hide();
 
@@ -26,7 +25,7 @@ function ready(){
 			mapGen(userLocation)
 
 			//Generating markers
-			eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&categories=103&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=7LJ23Y6JWNBM7WUIJ424'
+			eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=7LJ23Y6JWNBM7WUIJ424'
 			$.ajax({
 				type: 'GET',
 				url: eventUrl,
@@ -45,6 +44,7 @@ function ready(){
 					outingName = $(this).val();
 				}
 			})
+
 			locationConfirm.show()
 			locationConfirm.html('<p>Save ' + userLocation + ' outing.</p>');
 			locationConfirm.on('click', function(event){
@@ -121,7 +121,7 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 	myLayer.on('click', function(event){
 		event.layer.unbindPopup();
 		url = event.layer.feature.properties.url + '?token=4AP25GNUCXVYPVTGLP3V'
-		// console.log(url)
+		console.log(url)
 		$.ajax({
 			type: 'GET',
 			url: url,
@@ -133,15 +133,26 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 }
 
 function save(result){
+	var name = result.name.text;
+	var category = result.category.name;
+	var id = result.id;
+	var url = result.url;
+
+	if (!category) {
+		category = "no category";
+	}
+	if (!url) {
+		url = "no url"
+	};
 	$.ajax({
 		type: 'POST',
 		url: '/activities',
 		data: {
 			activity: {
-				name: result.name,
-				category: result.category.name,
-				event_id: result.id,
-				event_url: result.url
+				name: name,
+				category: category,
+				event_id: id,
+				event_url: url
 			}
 		},
 		success: function(){

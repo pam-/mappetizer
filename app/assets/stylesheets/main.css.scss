@@ -22,3 +22,11 @@
 .space{
 	padding: .3em 0em .3em 1em;
 }
+
+.new_outing_info{
+	display: hidden;
+}
+
+.new_outing_info.active{
+	display: block;
+}

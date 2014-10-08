@@ -3,7 +3,7 @@ class CreateActivities < ActiveRecord::Migration
     create_table :activities do |t|
       t.string :name
       t.integer :category
-      t.integer :event_id
+      t.integer :event_id, :limit => 8
       t.string :event_url
     end
   end

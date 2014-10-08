@@ -1,6 +1,6 @@
 <div class="row container" data-id="<%= current_user.id %>">
 
-	<div class="small-4 columns">	
+	<div class="new_outing small-4 columns">	
 
 		<form>
 			<label> Select Outing Location </label>
@@ -21,15 +21,24 @@
 					<input type="time" id="end_time">
 				</div>
 			</div>
-			<div class="button small save_location"></div>
 			<div id="outing_name">
 				<label> Name your Outing </label>
 				<input type="text" placeholder="">
 			</div>
+			<div class="button small save_location"></div>
 		</form>
 
 			<%=link_to 'Show Outings', user_path(current_user) %>
 	</div>	
+
+	<div class="new_outing_info small-4 columns">
+		<h2> <small></small></h2>
+
+		<ul>
+
+		</ul>
+
+	</div>
 
 
 	<div class="small-8 columns" id="map">

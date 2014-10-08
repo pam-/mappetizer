@@ -7,36 +7,45 @@ function ready(){
 	geocoder = L.mapbox.geocoder('mapbox.places-city-v1'),
   map = L.mapbox.map('map', 'pam-.jmeb29bh');
 	var userId = $('.row').data('id')
-	$('.save_location').hide()
+	var locationConfirm = $('.save_location')
+	var date = $('input[type="date"]').val()
+	locationConfirm.hide()
+
 	$('#outing_name').hide()
-	$('.container input[type="text"]').keypress(function(event){
+	$('.container input[type="date"]').keypress(function(event){
 		if(event.which === 13) {
 			event.preventDefault();
-			var userLocation = $(this).val();
-			console.log(userLocation)
+			var userLocation = $('#location').val();
+			var defaultName = userLocation + ' Outing';
+			var startDate = $('#start_date').val();
+			var startTime = $('#start_time').val();
+			var endDate = $('#end_date').val();
+			var endTime = $('#end_time').val();
+			console.log(startTime)
+			// console.log(defaultName)
 			mapGen(userLocation)
-			$('.save_location').show()
-			$('.save_location').html("<p>Save outing in " + userLocation + ".</p>");
-			$('.save_location').on("click", function(event){
+			locationConfirm.show()
+			locationConfirm.html('<p>Save ' + userLocation + ' outing.</p>');
+			locationConfirm.on('click', function(event){
 				$.ajax({
 					type: 'POST',
 					url: '/outings',
 					dataType: 'json',
 					data: {
 						outing: {
-							name: userLocation + 'Outing',  
-							// date:
+							name: defaultName,  
+							date: date,
 							user_id: userId,
 							city: userLocation
 						}
 					},
 					success: function(){
-						sideBar(userLocation);
+						sideBar(defaultName);
 					}
 				})				
-				});
+			});
 
-			eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&categories=103&start_date.range_start=2014-10-10T15%3A21%3A13Z&start_date.range_end=2014-10-12T15%3A03%3A22Z&token=4AP25GNUCXVYPVTGLP3V'
+			eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&categories=103&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=4AP25GNUCXVYPVTGLP3V'
 			$.ajax({
 				type: 'GET',
 				url: eventUrl,
@@ -49,10 +58,12 @@ function ready(){
 	})
 }
 
-function sideBar(userLocation){
+function sideBar(defaultName){
 	$('.save_location').hide();
-	$('#outing_name').show().attr('placeholder', userLocation + ' outing');	
-	$('#outing_name').keypress(function(event){
+	$('#outing_name').show();
+	var nameField = $('#outing_name input[type="text"]');
+	nameField.attr('placeholder', defaultName);	
+	nameField.keypress(function(event){
 		if(event.which === 13){
 			event.preventDefault();
 			var outingName = $(this).val();
@@ -61,17 +72,28 @@ function sideBar(userLocation){
 				url: 'outings/' + outingId,
 				data: { outing: { name: outingName } },
 				success: function(){
-					// change name on screen 
+					$('#outing_name').html(outingName);
 				}
 			})
 		}
 	})
 }
 
+function mapGen(userLocation){
+	geocoder.query(userLocation, showMap);
+
+	function showMap(err, data) {
+	  if (data.lbounds) {
+	      map.fitBounds(data.lbounds);
+	  } else if (data.latlng) {
+	      map.setView([data.latlng[0], data.latlng[1]], 13);
+	  }
+	}
+}
+
 function render(result){
 	for(i=0; i < result.length; i++){
 		event = result[i];
-		// console.log(event.venue)
 		markerGen(event.venue.longitude, event.venue.latitude, event.venue.name)
 	}
 }
@@ -102,18 +124,6 @@ function markerGen(longitude, latitude, venue_name){
 	myLayer.on('mouseout', function(e){
 		e.layer.closePopup();
 	});
-}
-
-function mapGen(userLocation){
-	geocoder.query(userLocation, showMap);
-
-	function showMap(err, data) {
-	  if (data.lbounds) {
-	      map.fitBounds(data.lbounds);
-	  } else if (data.latlng) {
-	      map.setView([data.latlng[0], data.latlng[1]], 13);
-	  }
-	}
 }
 
 

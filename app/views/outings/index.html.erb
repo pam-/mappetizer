@@ -3,9 +3,29 @@
 	<div class="small-4 columns">	
 
 		<form>
-			<input type="text" id="location" placeholder="City, ST">
-			<span><div class="button small save_location"></div></span>
-			<input type="text" label="Outing Name:" id="outing_name" placeholder="">
+			<label> Select Outing Location </label>
+			<input type="text" id="location" placeholder="City">
+			<div class="row">
+				<div class="small-7 columns">
+					<input type="date" id="start_date"> 
+				</div>
+				<div class="small-5 columns">
+					<input type="time" id="start_time">
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-7 columns">
+					<input type="date" id="end_date"> 
+				</div>
+				<div class="small-5 columns">
+					<input type="time" id="end_time">
+				</div>
+			</div>
+			<div class="button small save_location"></div>
+			<div id="outing_name">
+				<label> Name your Outing </label>
+				<input type="text" placeholder="">
+			</div>
 		</form>
 
 			<%=link_to 'Show Outings', user_path(current_user) %>

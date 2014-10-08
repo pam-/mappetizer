@@ -190,7 +190,7 @@ function displayOutingInfo(name, start, sTime, end, eTime, location){
 	var infoContainer = $('.new_outing_info');
 	infoContainer.addClass('active');
 
-	$(infoContainer).append(name);
+	$(infoContainer).append('<h2>' + name + '</h2>');
 
 }
 
@@ -200,7 +200,9 @@ function displayActivityInfo(name){
 	var actInfoContainer = $('.new_activity_info');
 	actInfoContainer.addClass('active');
 
-	$(actInfoContainer, 'ul').append(name);
+	// $(actInfoContainer).appendClass()
+
+	$(actInfoContainer).append(name);
 }
 
 $(document).ready(ready);

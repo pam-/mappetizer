@@ -7,8 +7,9 @@
 
 		<h1>Dear friend,</h1>
 		<p>I'd like you to join me on an awesome adventure!</p>
+		<p>Here's the link for more info: <%= link_to @outing.name, outing_path(@outing) %> </p>
 		<p>Hope you can make it,</p>
-		<p> random dudette </p>
+		<p> <%= @user.name %> </p>
 
 	</body>
 </html>

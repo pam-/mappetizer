@@ -2,18 +2,28 @@
 	box-sizing:border-box;
 }
 
+html, body{
+	height: 100%;
+}
+
 #map{
 	width: 50%;
 	height: 500px;
 }
 
+.wrapper{
+	min-height: 100%;
+	background: url(/assets/map_icon.png) no-repeat;
+	background-size: 80%;
+	background-position: 10% 0;
+}
+
 img {
-	position: absolute;
 	margin: 0 auto;
 	right: 50px;
 }
 
-.footer{
+.footer-area{
 	background-color: black;
 	color: white;
 }

@@ -156,7 +156,9 @@ function save(result){
 			}
 		},
 		success: function(){
-			console.log('something happened')
+			console.log('success of save')
+			$('.new_outing').hide();
+			displayActivityInfo(name, category, url)
 		}
 	})
 }
@@ -177,6 +179,8 @@ function sideBar(userLocation, startDate, startTime, endDate, endTime, outingNam
 			}
 		},
 		success: function(){
+			console.log('success of sidebar')
+			$('.new_outing').hide();
 			displayOutingInfo(outingName, startDate, startTime, endDate, endTime, userLocation)
 		}
 	})
@@ -188,6 +192,15 @@ function displayOutingInfo(name, start, sTime, end, eTime, location){
 
 	$(infoContainer, 'h2').html(name);
 
+}
+
+// This is the function that displays the activies under the outing name
+function displayActivityInfo(name, category, url){
+	console.log('reached inside of display activity info');
+	var actInfoContainer = $('.new_activity_info');
+	actInfoContainer.addClass('active');
+
+	$(actInfoContainer, 'h2').html(name + category + url);
 }
 
 $(document).ready(ready);

@@ -158,7 +158,7 @@ function save(result){
 		success: function(){
 			console.log('success of save')
 			$('.new_outing').hide();
-			displayActivityInfo(name, category, url)
+			displayActivityInfo(name)
 		}
 	})
 }
@@ -195,12 +195,12 @@ function displayOutingInfo(name, start, sTime, end, eTime, location){
 }
 
 // This is the function that displays the activies under the outing name
-function displayActivityInfo(name, category, url){
+function displayActivityInfo(name){
 	console.log('reached inside of display activity info');
 	var actInfoContainer = $('.new_activity_info');
 	actInfoContainer.addClass('active');
 
-	$(actInfoContainer, 'h2').html(name + category + url);
+	$(actInfoContainer, 'h2').html(name);
 }
 
 $(document).ready(ready);

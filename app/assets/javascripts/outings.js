@@ -22,9 +22,10 @@ function ready(){
 			var outingName = userLocation + ' Outing';
 			var nameField = $('#outing_name input[type="text"]');
 
-			// console.log(startTime)
-			// console.log(defaultName)
+			// Generating map
 			mapGen(userLocation)
+
+			//Generating markers
 			eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&categories=103&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=4AP25GNUCXVYPVTGLP3V'
 			$.ajax({
 				type: 'GET',
@@ -32,12 +33,12 @@ function ready(){
 				success: function(result){
 					console.log(result.events)
 					return render(result.events)
+					//use event resource_uri to make other get request
 				}
 			})			
 
 			$('#outing_name').show();
 			nameField.attr('placeholder', outingName);
-
 			nameField.keypress(function(event){
 				if(event.which === 13){
 					event.preventDefault();
@@ -68,7 +69,10 @@ function mapGen(userLocation){
 function render(result){
 	for(i=0; i < result.length; i++){
 		event = result[i];
-		markerGen(event.venue.longitude, event.venue.latitude, event.venue.name)
+		longitude = event.venue.longitude;
+		latitude = event.venue.latitude;
+
+		markerGen(longitude, latitude, event.venue.name)
 	}
 }
 
@@ -82,7 +86,7 @@ function markerGen(longitude, latitude, venue_name){
 				title: venue_name,
 				'marker-color': '#D79488',
 				'marker-size': 'large',
-				// url
+				url: venue_url
 			},
 			geometry: {
 				type: 'Point',
@@ -91,13 +95,44 @@ function markerGen(longitude, latitude, venue_name){
 		}]
 	}
 	console.log('here')
+	var marker = event.layer
+	feature = marker.feature
+	popupContent = '<p>' + feature.event_name + '</p> <p>' + feature.event_description + '</p><p>' + feature.event_start + '-' + feature.event_end + '</p> <p>Click me to confirm this event</p>' 
+
 	myLayer.setGeoJSON(geojson);
-	myLayer.on('mouseover', function(e){
-		e.layer.openPopup();
+	myLayer.on('mouseover', function(event){
+		event.layer.openPopup(popupContent);
 	});
-	myLayer.on('mouseout', function(e){
-		e.layer.closePopup();
+	myLayer.on('mouseout', function(event){
+		event.layer.closePopup(popupContent);
 	});
+
+	myLayer.on('click', function(event){
+		event.layer.unbindPopup();
+		url = event.layer.feature.properties.url + accessToken
+		$.ajax({
+			type: 'GET',
+			url: url,
+			success: function(result){
+				// other ajax request
+				$.ajax({
+					type: 'POST',
+					url: '/activities',
+					data: {
+						activity: {
+							name: ,
+							category: ,
+							event_id: ,
+							event_url: 
+						}
+					},
+					success: function(){
+						// put that shit in the sidebar
+					}
+				})
+			}
+		})
+	})
 }
 
 function sideBar(userLocation, startDate, startTime, endDate, endTime, outingName){

@@ -1,18 +1,36 @@
 <div class="row">
-  <div class="small-12 columns background_img" id="background_img">
+  <div class="small-12 columns">
+  	<img src="/assets/map_icon.png" class="bg_img">
      <h1 class="logo">Mappetizer.</h1>
    <div class="row">  
    	<div class="small-12 columns">
      <ul>
 	   <div class="button-group">
 	      <% if !user_signed_in? %>
-		    <%= link_to "Sign in", new_user_session_path, class: "button large radius"%>
-		    <span class="space"></span>
-	       	<%= link_to "Register", new_user_registration_path, class: "button large radius"%>
-	       <% else %>
-	       	<%= link_to "My Outings", user_path(current_user), class: "button large radius"%>
-	       <span class="space"></span>
-	       	<%= link_to "Create an Outing", outings_path, class: "button large radius"%>
+			  
+			  <div class="row">
+			  	<div class="large-6 columns button">
+			    	<%= link_to "Sign in", new_user_session_path, class: "button large radius"%>
+			  	</div>
+
+			  	<div class="large-6 columns button">
+				    <span class="space"></span>
+			       	<%= link_to "Register", new_user_registration_path, class: "button large radius"%>
+		  		</div>
+			  </div>  
+
+		       <% else %>
+		    
+		    <!-- <div class="row"> -->
+		    	<div class="button">
+		      	<%= link_to "My Outings", user_path(current_user), class: "button large radius"%>
+					</div>
+					<div class="button">
+						<%= link_to "Create an Outing", outings_path, class: "button large radius"%>
+		      </div>	
+		   <!--  </div> -->
+	    	
+	    </div>
  	      <% end %>
 	   </div>
 	 </ul>

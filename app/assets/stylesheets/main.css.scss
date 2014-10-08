@@ -6,9 +6,10 @@
 	box-sizing:border-box;
 }
 
-#background_img{
-	background: url('/assets/map_icon.png') no-repeat;
+img {
+	position: absolute;
 	margin: 0 auto;
+	right: 50px;
 }
 
 .logo{
@@ -22,11 +23,12 @@
 	text-align:center;
 	margin: .3em;
 	padding: .5em;
+	margin-top: 25%;
 }
 
-.space{
-	padding: .3em 0em .3em 1em;
-}
+// .space{
+// 	padding: .3em 0em .3em 1em;
+// }
 
 .new_outing_info{
 	display: hidden;

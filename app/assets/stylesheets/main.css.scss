@@ -1,15 +1,21 @@
+*{
+	box-sizing:border-box;
+}
+
 #map{
 	width: 50%;
 	height: 500px;
-}
-*{
-	box-sizing:border-box;
 }
 
 img {
 	position: absolute;
 	margin: 0 auto;
 	right: 50px;
+}
+
+.footer{
+	background-color: black;
+	color: white;
 }
 
 .logo{

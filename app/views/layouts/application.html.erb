@@ -66,11 +66,15 @@
 		    </nav>
         </div>
 	</header>
+  
+	<div class="wrapper">
     <%= yield %>
-  	
+    <div class="push"></div>
+  </div>
+
     <div class="full-width footer-area">
       <div class="row">
-        <div class="large-12 columns">
+        <div class="large-12 columns footer">
           About Us
  	      Blog
   	      Press
@@ -83,9 +87,9 @@
         </div>
       </div>
     </div>
-  	<footer>
 
-	</footer>
+  	<footer></footer>
+
     <%= javascript_include_tag "application" %>
   </body>
 </html>

@@ -8,7 +8,7 @@ function ready(){
 
 	var locationConfirm = $('.save_location');
 	locationConfirm.hide();
-	$('#outing_name').hide();
+	// $('#outing_name').hide();
 
 	$('.container input[type="time"]').keypress(function(event){
 		if(event.which === 13) {
@@ -36,14 +36,14 @@ function ready(){
 				}
 			})			
 
-			$('#outing_name').show();
-			nameField.attr('placeholder', outingName);
-			nameField.keypress(function(event){
-				if(event.which === 13){
-					event.preventDefault();
-					outingName = $(this).val();
-				}
-			})
+			// $('#outing_name').show();
+			// nameField.attr('placeholder', outingName);
+			// nameField.keypress(function(event){
+			// 	if(event.which === 13){
+			// 		event.preventDefault();
+			// 		outingName = $(this).val();
+			// 	}
+			// })
 
 			locationConfirm.show()
 			locationConfirm.html('<p>Save ' + userLocation + ' outing.</p>');
@@ -177,7 +177,6 @@ function sideBar(userLocation, startDate, startTime, endDate, endTime, outingNam
 			}
 		},
 		success: function(){
-			$('.new_outing').hide();
 			displayOutingInfo(outingName, startDate, startTime, endDate, endTime, userLocation)
 		}
 	})

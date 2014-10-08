@@ -10,38 +10,36 @@ function ready(){
 	locationConfirm.hide();
 	// $('#outing_name').hide();
 
-	$('.container input[type="time"]').keypress(function(event){
-		if(event.which === 13) {
-			event.preventDefault();
-			var userLocation = $('#location').val();
-			var startDate = $('#start_date').val();
-			var startTime = $('#start_time').val();
-			var endDate = $('#end_date').val();
-			var endTime = $('#end_time').val();
-			var outingName = userLocation + ' Outing';
-			var nameField = $('#outing_name input[type="text"]');
+	$('.search').on('click', function(event){
+		event.preventDefault();
+		var userLocation = $('#location').val();
+		var startDate = $('#start_date').val();
+		var startTime = $('#start_time').val();
+		var endDate = $('#end_date').val();
+		var endTime = $('#end_time').val();
+		var outingName = userLocation + ' Outing';
+		var nameField = $('#outing_name input[type="text"]');
 
-			// Generating map
-			mapGen(userLocation)
+		// Generating map
+		mapGen(userLocation)
 
-			//Generating markers
-			eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=7LJ23Y6JWNBM7WUIJ424'
-			$.ajax({
-				type: 'GET',
-				url: eventUrl,
-				success: function(result){
-					console.log(result.events)
-					return render(result.events)
-					//use event resource_uri to make other get request
-				}
-			})			
+		//Generating markers
+		eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=7LJ23Y6JWNBM7WUIJ424'
+		$.ajax({
+			type: 'GET',
+			url: eventUrl,
+			success: function(result){
+				console.log(result.events)
+				return render(result.events)
+				//use event resource_uri to make other get request
+			}
+		})			
 
-			locationConfirm.show()
-			locationConfirm.html('<p>Save ' + userLocation + ' outing.</p>');
-			locationConfirm.on('click', function(event){
-				sideBar(userLocation, startDate, startTime, endDate, endTime, outingName);				
-			});
-		}
+		locationConfirm.show()
+		locationConfirm.html('<p>Save ' + userLocation + ' outing.</p>');
+		locationConfirm.on('click', function(event){
+			sideBar(userLocation, startDate, startTime, endDate, endTime, outingName);				
+		});
 	})
 }
 

@@ -18,6 +18,10 @@ class OutingsController < ApplicationController
 
 	def show
 	  @outing = Outing.find(params[:id])
+	  respond_to do |format|
+	  	format.html
+	  	format.json { render json: @outing }
+	  end 
 	end
 
 	def edit

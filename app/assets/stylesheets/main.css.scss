@@ -6,6 +6,15 @@ html, body{
 	height: 100%;
 }
 
+.icon{
+	color: purple;
+	text-align: center;
+	font-size: 400px;
+	padding-top: 0;
+	margin-top: 0;
+	line-height: 1;
+}
+
 #map{
 	// width: 50%;
 	height: 500px;
@@ -13,7 +22,7 @@ html, body{
 
 .wrapper{
 	min-height: 100%;
-	background: url(/assets/world_map2.jpg) no-repeat;
+	// background: url(/assets/world_map2.jpg) no-repeat;
 	background-size: 80%;
 	background-position: 10% 0;
 }
@@ -32,7 +41,7 @@ html, body{
 	text-align: center;
 	padding: .5em;
 	font-size: 2.5em;
-	font-family: 'Coming Soon';
+	font-family: 'Open Sans', sans-serif;
 	width: 50%;
 	text: justify; 
 }
@@ -67,9 +76,9 @@ html, body{
 	margin-top: 25%;
 }
 
-// .space{
-// 	padding: .3em 0em .3em 1em;
-// }
+.space{
+	padding: .3em 0em .3em 1em;
+}
 
 .new_outing_info{
 	display: hidden;

@@ -1,7 +1,6 @@
 #Mappetizer
-=
 
-##GA WDI DC August 2014, Project 2
+###GA WDI DC August 2014, Project 2
 
 ###Overview
 

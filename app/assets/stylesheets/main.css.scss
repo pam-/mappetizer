@@ -15,6 +15,10 @@ html, body{
 	line-height: 1;
 }
 
+button{
+	padding-top: .5em 0;
+}
+
 #map{
 	// width: 50%;
 	height: 500px;
@@ -26,11 +30,6 @@ html, body{
 	background-size: 80%;
 	background-position: 10% 0;
 }
-
-// img {
-// 	margin: 0 auto;
-// 	right: 50px;
-// }
 
 // .logo{
 // 	padding: .5em;
@@ -47,6 +46,7 @@ html, body{
 }
 
 .footer-area{
+	width: 100%;
 	background-color: #333333;
 	ul{
 		text-align: center;
@@ -62,6 +62,10 @@ html, body{
 	}
 }
 
+.button a{
+	color: white;
+}
+
 .logo{
 	margin: auto;
 	text-align: center;
@@ -71,9 +75,9 @@ html, body{
 
 .button-group{
 	text-align:center;
-	margin: .3em;
-	padding: .5em;
-	margin-top: 25%;
+	margin: 0;
+	padding: .1em 0;
+	padding-bottom: 1.5em;
 }
 
 .space{
@@ -87,4 +91,3 @@ html, body{
 .new_outing_info.active{
 	display: block;
 }
-

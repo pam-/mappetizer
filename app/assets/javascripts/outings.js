@@ -19,7 +19,7 @@ function ready(){
 		var startTime = $('#start_time').val();
 		var endDate = $('#end_date').val();
 		var endTime = $('#end_time').val();
-		var outingName = userLocation + ' Outing';
+		var outingName = userLocation + ' outing';
 		var nameField = $('#outing_name input[type="text"]');
 
 		if (nameField.val() != "") {
@@ -53,16 +53,18 @@ function ready(){
 	// outing show page
 	var outingId = $('.info').data('id')
 	var outingCity = $('.info').data('city')
-	$.ajax({
-		type: 'GET',
-		url: '/outings/' + outingId + '/activities',
-		dataType: 'json',
-		success: function(result){
-			mapGen(outingCity)
-			finalRender(result)
-		}
-	})
 
+	if (outingId !== undefined) {
+		$.ajax({
+			type: 'GET',
+			url: '/outings/' + outingId + '/activities',
+			dataType: 'json',
+			success: function(result){
+				mapGen(outingCity)
+				finalRender(result)
+			}
+		})
+	};
 }
 
 function mapGen(userLocation){
@@ -132,7 +134,6 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 	myLayer.on('click', function(event){
 		event.layer.unbindPopup();
 		url = event.layer.feature.properties.url + '?token=4AP25GNUCXVYPVTGLP3V'
-		console.log(url)
 		$.ajax({
 			type: 'GET',
 			url: url,
@@ -165,7 +166,7 @@ function save(result){
 		data: {
 			activity: {
 				name: name,
-				category: category? category.name : 'no category',
+				category: category,
 				event_id: id,
 				event_url: url,
 				longitude: longitude,
@@ -217,7 +218,7 @@ function displayActivityInfo(name, venue){
 	var actInfoContainer = $('.new_activity_info');
 	actInfoContainer.addClass('active');
 
-	$(actInfoContainer).append('<h3>' + name + '</h3><p>' + venue + '</p>');
+	$(actInfoContainer).append('<h4>' + name + '</h4><p>' + venue + '</p>');
 
 }
 
@@ -251,8 +252,36 @@ function finalMarkers(longitude, latitude, name){
 	myLayer.setGeoJSON(geojson);
 }
 
+var email1 = $('#email1').val()
+var email2 = $('#email2').val()
+var email3 = $('#email3').val()
+
+var emails = [$('#email1'), $('#email2'), $('#email3')]
+
+for(var i = 0; i < emails.length; i++){
+	var email = emails[i];
+	email.hide();
+}
+
 $('.send-email').on('click', function(){
-	window.location.href = "/outings/" + newOutingId; 
+	// window.location.href = "/outings/" + newOutingId;
+
+	for(var i = 0; i < emails.length; i++){
+		var email = emails[i];
+		email.show();
+	}
+
+	$.ajax({
+		type: 'POST',
+		url: '/new_mail',
+		data: { 
+			participants: [email1, email2, email3],
+			url: "http://localhost:3000/outings/" + newoutingId
+		 },
+		success: function(){
+			console.log('something happened')
+		}
+	})
 })
 
 $(document).ready(ready);

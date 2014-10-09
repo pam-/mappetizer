@@ -3,7 +3,7 @@ Mappetizer
 
 Overview
 
-This application was built to exercise newly aquired skills in ruby, ruby on rails, and javascript. Four members of the second cohort of Web Development Immersive Students at the General Assembly Washington, D.C. worked on this project: Pam Assogba, Wade Buckland, Martin Johnson, and Lisa Snider. It was completed as part of a 4 day sprint modeling agile software development processes.
+This application was built in October 2014 to exercise newly aquired skills in ruby, ruby on rails, and javascript. Four members of the second cohort of Web Development Immersive Students at the General Assembly Washington, D.C. worked on this project: Pam Assogba, Wade Buckland, Martin Johnson, and Lisa Snider. It was completed as part of a 4 day sprint modeling agile software development processes.
 
 The the purpose of the application is to help people coordinate group outings by listing potential events to attend depending on a chosen city and date range. 
 
@@ -27,7 +27,7 @@ For list of user stories and backlog, see the public https://www.pivotaltracker.
 Technology used:
 - Ruby on Rails 4.1.6.
 - PostgreSQL Database
-- The Devise gem for authentication.
+- The Devise gem for authentication and authorization.
 - Foundation for styling and laying out the site.
 - The mail gem, which allows users to send emails from the app.
 - The letter opener gem that allowed us to preview email in the browser instead of sending it and not set-up email in development.

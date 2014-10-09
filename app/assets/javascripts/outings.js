@@ -32,7 +32,7 @@ function ready(){
 		mapGen(userLocation)
 
 		//Generating markers
-		eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=7LJ23Y6JWNBM7WUIJ424'
+		eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=4AP25GNUCXVYPVTGLP3V'
 		$.ajax({
 			type: 'GET',
 			url: eventUrl,
@@ -137,7 +137,6 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 			type: 'GET',
 			url: url,
 			success: function(result){
-				console.log(result.category.name)
 				save(result);
 			}
 		})
@@ -145,15 +144,14 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 }
 
 function save(result){
-	console.log(result.category.name)
 	var category;
 	var name = result.name.text;
+	var venue = result.venue.name;
 	var id = result.id;
 	var url = result.url;
 	var longitude = result.venue.longitude;
 	var latitude = result.venue.latitude;
-	console.log(longitude)
-	if (!result.category) {
+	if (result.category === null) {
 		category = "no category";
 	} else {
 		category = result.category;
@@ -167,7 +165,7 @@ function save(result){
 		data: {
 			activity: {
 				name: name,
-				category: category.name,
+				category: category? category.name : 'no category',
 				event_id: id,
 				event_url: url,
 				longitude: longitude,
@@ -176,7 +174,7 @@ function save(result){
 		},
 		success: function(){
 			$('.new_outing').hide();
-			displayActivityInfo(name)
+			displayActivityInfo(name, venue)
 		}
 	})
 }
@@ -211,18 +209,16 @@ function displayOutingInfo(name, start, sTime, end, eTime, location){
 
 	$(infoContainer).html('<h2>' + name + '</h2>');
 	$(infoContainer).append( '<p>' + start + '-' + sTime + ' until ' + end + '-' + eTime + '</p>');
-
-
 }
 
-// This is the function that displays the activies under the outing name
-function displayActivityInfo(name){
+function displayActivityInfo(name, venue){
 	console.log('reached inside of display activity info');
 	$('.send-email').show();
 	var actInfoContainer = $('.new_activity_info');
 	actInfoContainer.addClass('active');
 
-	$(actInfoContainer).append('<p>' + name + '</p>');
+	$(actInfoContainer).append('<h3>' + name + '</h3><p>' + venue + '</p>');
+
 }
 
 function finalRender(result, city) {

@@ -1,5 +1,4 @@
 #Mappetizer
-===========
 
 ##GA WDI DC August 2014, Project 2
 
@@ -7,8 +6,9 @@
 
 **Mappetize** is a social app that enables friends to more effectively plan group outings. Four students of the August cohort of Web Development Immersive at General Assembly's Washington, D.C. campus developed the application: Pam Assogba, Wade Buckland, Martin Johnson, and Lisa Snider. The team built the app from the ground up during a 4-day sprint modeling the agile software development process. 
 
+[Visit Mappetize] (http://fathomless-ravine-7965.herokuapp.com/)
 
-User stories completed were:
+##User stories completed:
 - As a guest, I can visit a homepage that links to sign-in and sign-up pages.
 - As a user, I can sign-in to my account.
 - As a guest, I can sign-up for an account.
@@ -34,8 +34,6 @@ For list of user stories and backlog, see our public Pivitol Tracker: https://ww
 - The mail gem, which allows users to send emails from the app.
 - The letter opener gem that allowed us to preview email in the browser instead of sending it and not set-up email in development.
 
-[Visit Mappetize] (http://fathomless-ravine-7965.herokuapp.com/)
-
 ##ERD
 
 ![](app/assets/images/erd.png)
@@ -52,4 +50,4 @@ For list of user stories and backlog, see our public Pivitol Tracker: https://ww
     Note that you will need to request access tokens for both the Eventbrite and Mapbox apis and replace them as appropriate within the code. 
     
 ===========
-###Written by Team Appetize
+######Written by Team Appetize

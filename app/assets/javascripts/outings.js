@@ -53,6 +53,18 @@ function ready(){
 	// outing show page
 	var outingId = $('.info').data('id')
 	var outingCity = $('.info').data('city')
+	
+	if (outingId !== undefined) {
+		$.ajax({
+			type: 'GET',
+			url: '/outings/' + outingId + '/activities',
+			dataType: 'json',
+			success: function(result){
+				mapGen(outingCity)
+				finalRender(result)
+			}
+		})
+	};
 
 	if (outingId !== undefined) {
 		$.ajax({
@@ -140,8 +152,8 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 			success: function(result){
 				save(result);
 			}
-		})
-	})
+		});
+	});
 }
 
 function save(result){

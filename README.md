@@ -16,20 +16,32 @@ Sample user stories completed were:
 - As a user, I can add events to my outing by selecting markers on a map.
 - As a user, I can share my outing with others via email.
 
+To complete this application, we used two APIs:
+Mapbox: https://www.mapbox.com/developers/api/
+Eventbrite: http://developer.eventbrite.com/
+
+Based on date and location selections by the user, event data are pulled from the Eventbrite api, these data are then passed to the Mapbox api.
+
 For list of user stories and backlog, see the public https://www.pivotaltracker.com/s/projects/1181394.
 
 Technology used:
-- Ruby on Rails 4.1.5.
+- Ruby on Rails 4.1.6.
 - PostgreSQL Database
-- The Devise gem for log-in.
-- Testing using RSPEC
+- The Devise gem for authentication.
+- Foundation for styling and laying out the site.
+- The mail gem, which allows users to send emails from the app.
+- The letter opener gem that allowed us to preview email in the browser instead of sending it and not set-up email in development.
 
 Find an the application here:
-http://salty-cove-1064.herokuapp.com/
+http://ADD_URL_HERE.herokuapp.com/
 
 ## Local Setup
 
     rake db:create
+    bundle install
     rake db:migrate
     rake db:seed
     rails s
+
+    Open the page locally on http://localhost:3000.
+    Note that you will need to request access tokens for both the Eventbrite and Mapbox apis and replace them as appropriate within the code. 

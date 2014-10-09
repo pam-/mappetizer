@@ -1,6 +1,7 @@
 var myLayer;
 var geocoder;
 var newOutingId;
+
 function ready(){
 
 	L.mapbox.accessToken = 'pk.eyJ1IjoicGFtLSIsImEiOiJNT09NSzgwIn0.AWl1AY_kO1HMnFHwxb9mww';

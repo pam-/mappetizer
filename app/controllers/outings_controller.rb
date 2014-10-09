@@ -4,7 +4,6 @@ class OutingsController < ApplicationController
 
 	def index
 	  @outings = Outing.all
-	  @outing = Outing.where(user_id: current_user.id).last
 
 	  respond_to do |format|
 	  	format.html

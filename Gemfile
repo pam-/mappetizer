@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem "letter_opener", :group => :development
 
+gem "rails-erd", :group => :development
+
 gem 'mail'
 # facilitates Action Mailer to send emails from rails app
 

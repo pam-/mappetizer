@@ -10,7 +10,7 @@ function ready(){
 	var locationConfirm = $('.save_location');
 	locationConfirm.hide();
 	$('.new_outing_info').hide();
-	$('.send-email').hide();
+	$('.send-email').hide(); 
 
 	$('.search').on('click', function(event){
 		event.preventDefault();

@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'rails_12factor', :group => :production
+
 gem "letter_opener", :group => :development
 
 gem "rails-erd", :group => :development

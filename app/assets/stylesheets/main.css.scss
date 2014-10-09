@@ -13,7 +13,7 @@ html, body{
 
 .wrapper{
 	min-height: 100%;
-	background: url(/assets/map_icon.png) no-repeat;
+	background: url(/assets/world_map2.jpg) no-repeat;
 	background-size: 80%;
 	background-position: 10% 0;
 }
@@ -34,14 +34,23 @@ html, body{
 	font-size: 2.5em;
 	font-family: 'Coming Soon';
 	width: 50%;
-	text: justify;
+	text: justify; 
 }
 
 .footer-area{
 	background-color: #333333;
-	color: white;
-	font-family: "Helvetica Neue";
-	// font-size: rem-calc(13);
+	ul{
+		text-align: center;
+		margin-bottom: 0;
+	}
+	ul li{
+		color: white;
+		font-family: "Helvetica Neue";
+		line-height: 4em;
+		display: inline-block;
+		font-size: .8em;
+		padding: 0 .5em;
+	}
 }
 
 .logo{

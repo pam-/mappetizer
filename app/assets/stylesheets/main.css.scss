@@ -16,6 +16,14 @@ html, body{
 	margin: 0;
 }
 
+/*.logo{
+	color: #00ffff
+}*/
+
+/*.logo-name{
+	color: #ffff00;
+}*/
+
 .sub-logo{
 	margin: auto;
 	text-align: center;
@@ -44,26 +52,25 @@ ul li{
 }
 
 li.button{
-	color: #000000;
-	background-color: #00ffff;
+	color: #ffffff;
+	background-color: #000000;
 	font-weight: bold;
-	border: 6px solid black;
 }
 
 .button a{
-	color: #000000;
+	color: #ffffff;
 	font-weight: bold;
 	font-size: 1.5em;
-	background-color: #00ffff;
+	background-color: #000000;
 }
 
 .button.right-side a{
-	color: #000000;
-	background-color: #ffff00;
+	color: #ffffff;
+	background-color: #00000;
 }
 
 .button.right-side{
-	background-color: #ffff00;	
+	background-color: #000000;	
 }
 
 .button-group{

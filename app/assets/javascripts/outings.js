@@ -54,16 +54,15 @@ function ready(){
 	var outingId = $('.info').data('id')
 	var outingCity = $('.info').data('city')
 	$.ajax({
-		type: 'GET',
-		url: '/outings/' + outingId + '/activities',
-		dataType: 'json',
-		success: function(result){
-			mapGen(outingCity)
-			finalRender(result)
-		}
-	})
-
-}
+			type: 'GET',
+			url: '/outings/' + outingId + '/activities',
+			dataType: 'json',
+			success: function(result){
+				mapGen(outingCity)
+				finalRender(result)
+			}
+		})
+	};
 
 function mapGen(userLocation){
 	geocoder.query(userLocation, showMap);

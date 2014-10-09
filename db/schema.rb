@@ -18,20 +18,15 @@ ActiveRecord::Schema.define(version: 20141007145622) do
 
   create_table "activities", force: true do |t|
     t.string  "name"
-    t.string  "category"
+    t.integer "category"
     t.integer "event_id",  limit: 8
     t.string  "event_url"
-    t.string  "latitude"
-    t.string  "longitude"
   end
 
   create_table "activities_outings", id: false, force: true do |t|
     t.integer "activity_id", null: false
     t.integer "outing_id",   null: false
   end
-
-  add_index "activities_outings", ["activity_id", "outing_id"], name: "index_activities_outings_on_activity_id_and_outing_id", using: :btree
-  add_index "activities_outings", ["outing_id", "activity_id"], name: "index_activities_outings_on_outing_id_and_activity_id", using: :btree
 
   create_table "outings", force: true do |t|
     t.string  "name"

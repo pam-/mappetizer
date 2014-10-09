@@ -21,8 +21,7 @@ ActiveRecord::Schema.define(version: 20141007145622) do
     t.string  "category"
     t.integer "event_id",  limit: 8
     t.string  "event_url"
-    t.string  "longitude"
-    t.string  "latitude"
+    t.string  "address"
   end
 
   create_table "activities_outings", id: false, force: true do |t|

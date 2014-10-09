@@ -5,8 +5,7 @@ class CreateActivities < ActiveRecord::Migration
       t.string :category
       t.integer :event_id, :limit => 8
       t.string :event_url
-      t.string :longitude
-      t.string :latitude
+      t.string :address
     end
   end
 end

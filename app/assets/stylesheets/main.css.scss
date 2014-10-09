@@ -6,26 +6,60 @@ html, body{
 	height: 100%;
 }
 
+.icon{
+	color: purple;
+	text-align: center;
+	font-size: 400px;
+	padding-top: 0;
+	margin-top: 0;
+	line-height: 1;
+}
+
 #map{
 	// width: 50%;
 	height: 500px;
 }
 
-// .wrapper{
-// 	min-height: 100%;
-// 	background: url(/assets/map_icon.png) no-repeat;
-// 	background-size: 80%;
-// 	background-position: 10% 0;
+.wrapper{
+	min-height: 100%;
+	// background: url(/assets/world_map2.jpg) no-repeat;
+	background-size: 80%;
+	background-position: 10% 0;
+}
+
+// img {
+// 	margin: 0 auto;
+// 	right: 50px;
 // }
 
-img {
-	margin: 0 auto;
-	right: 50px;
+// .logo{
+// 	padding: .5em;
+// }
+
+.sub-logo{
+	margin: auto;
+	text-align: center;
+	padding: .5em;
+	font-size: 2.5em;
+	font-family: 'Open Sans', sans-serif;
+	width: 50%;
+	text: justify; 
 }
 
 .footer-area{
-	background-color: black;
-	color: white;
+	background-color: #333333;
+	ul{
+		text-align: center;
+		margin-bottom: 0;
+	}
+	ul li{
+		color: white;
+		font-family: "Helvetica Neue";
+		line-height: 4em;
+		display: inline-block;
+		font-size: .8em;
+		padding: 0 .5em;
+	}
 }
 
 .logo{
@@ -42,9 +76,9 @@ img {
 	margin-top: 25%;
 }
 
-// .space{
-// 	padding: .3em 0em .3em 1em;
-// }
+.space{
+	padding: .3em 0em .3em 1em;
+}
 
 .new_outing_info{
 	display: hidden;

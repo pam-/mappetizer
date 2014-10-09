@@ -53,7 +53,9 @@ function ready(){
 	// outing show page
 	var outingId = $('.info').data('id')
 	var outingCity = $('.info').data('city')
-	$.ajax({
+
+	if (outingId !== undefined) {
+		$.ajax({
 			type: 'GET',
 			url: '/outings/' + outingId + '/activities',
 			dataType: 'json',

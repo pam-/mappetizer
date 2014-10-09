@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008202329) do
+ActiveRecord::Schema.define(version: 20141007145622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,17 @@ ActiveRecord::Schema.define(version: 20141008202329) do
     t.string  "category"
     t.integer "event_id",  limit: 8
     t.string  "event_url"
-    t.float   "longitude"
-    t.float   "latitude"
+    t.string  "longitude"
+    t.string  "latitude"
   end
 
   create_table "activities_outings", id: false, force: true do |t|
     t.integer "activity_id", null: false
     t.integer "outing_id",   null: false
   end
+
+  add_index "activities_outings", ["activity_id", "outing_id"], name: "index_activities_outings_on_activity_id_and_outing_id", using: :btree
+  add_index "activities_outings", ["outing_id", "activity_id"], name: "index_activities_outings_on_outing_id_and_activity_id", using: :btree
 
   create_table "outings", force: true do |t|
     t.string  "name"

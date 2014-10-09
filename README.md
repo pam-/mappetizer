@@ -35,6 +35,10 @@ Technology used:
 Find an the application here:
 http://ADD_URL_HERE.herokuapp.com/
 
+##ERD
+
+![ERD](assets/images/erd.png)
+
 ## Local Setup
 
     rake db:create

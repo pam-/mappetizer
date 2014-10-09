@@ -1,21 +1,23 @@
-<div class="info">
-	<h2> <%= @outing.name  %> 
-		<small> <%= @outing.date  %>
-		</small> 
-		<span> 
-			<%= @outing.city  %> 
-		</span>
-	</h2>
-
+<div class="info row" data-id="<%= @outing.id %>" data-city="<%= @outing.city %>">
+	<div class="small-4 columns">
+		<div class='row'>
+			<h2> <%= @outing.name  %> 
+				<small> <%= @outing.date  %>
+				</small> 
+				<span> 
+				<%= @outing.city  %> 
+				</span>
+			</h2>
+		</div>
+	
 	<% @activities.each do |activity| %>
-		<h3><%= activity.name %><h3>
-		<p><%= activity.category %><p>
-		<%= link_to 'RSVP', activity.event_url %>
+		<div class='row'>	
+			<h3><%= activity.name %><h3>
+			<p><%= activity.category %><p>
+			<%= link_to 'RSVP', activity.event_url %>
+		</div>
 	<% end %> 
+	</div>
 
-</div>
-
-
-<div id="mini-map">
-
+	<div class="small-8 columns" id="map"></div>
 </div>

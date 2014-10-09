@@ -17,6 +17,16 @@ class ActivitiesController < ApplicationController
 		end
 	end
 
+	def index
+		@outing = Outing.find(params[:id])
+		@activities = @outing.activities
+
+		respond_to do |format|
+			format.html 
+			format.json { render json: @activities }
+		end 
+	end
+
 	def show
 		@activity = Activity.find(params[:id])
 		respond_to do |format|
@@ -35,7 +45,7 @@ class ActivitiesController < ApplicationController
 	private
 
 	def activity_params
-		params.require(:activity).permit(:name, :category, :event_id, :event_url) 
+		params.require(:activity).permit(:name, :category, :event_id, :event_url, :longitude, :latitude) 
 	end
 
 end

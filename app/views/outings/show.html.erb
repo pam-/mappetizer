@@ -1,7 +1,21 @@
 <div class="info">
-	<% @outing.each do |outing| %>
-	<%= outing.name %>
+	<h2> <%= @outing.name  %> 
+		<small> <%= @outing.date  %>
+		</small> 
+		<span> 
+			<%= @outing.city  %> 
+		</span>
+	</h2>
+
+	<% @activities.each do |activity| %>
+		<h3><%= activity.name %><h3>
+		<p><%= activity.category %><p>
+		<%= link_to 'RSVP', activity.event_url %>
+	<% end %> 
+
 </div>
 
-<div class="map">
+
+<div id="mini-map">
+
 </div>

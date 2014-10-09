@@ -115,6 +115,7 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 			type: 'GET',
 			url: url,
 			success: function(result){
+				console.log(result.category.name)
 				save(result);
 			}
 		})
@@ -122,11 +123,14 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 }
 
 function save(result){
+	console.log(result.category.name)
 	var name = result.name.text;
-	var category = result.category.name;
+	var category = result.category;
 	var id = result.id;
 	var url = result.url;
-
+	var longitude = result.venue.longitude;
+	var latitude = result.venue.latitude;
+	console.log(category.name)
 	if (!category) {
 		category = "no category";
 	}
@@ -139,9 +143,11 @@ function save(result){
 		data: {
 			activity: {
 				name: name,
-				category: category,
+				category: category.name,
 				event_id: id,
-				event_url: url
+				event_url: url,
+				longitude: longitude,
+				latitude: latitude
 			}
 		},
 		success: function(){
@@ -179,7 +185,7 @@ function displayOutingInfo(name, start, sTime, end, eTime, location){
 	var infoContainer = $('.new_outing_info');
 	infoContainer.addClass('active');
 
-	$(infoContainer).append(name);
+	$(infoContainer, 'h2').append(name);
 
 }
 
@@ -189,7 +195,7 @@ function displayActivityInfo(name){
 	var actInfoContainer = $('.new_activity_info');
 	actInfoContainer.addClass('active');
 
-	$(actInfoContainer, 'ul').append(name);
+	$(actInfoContainer, 'ul').append('<li>' + name + '</li>');
 }
 
 $(document).ready(ready);

@@ -18,14 +18,30 @@ html, body{
 	background-position: 10% 0;
 }
 
-img {
-	margin: 0 auto;
-	right: 50px;
+// img {
+// 	margin: 0 auto;
+// 	right: 50px;
+// }
+
+// .logo{
+// 	padding: .5em;
+// }
+
+.sub-logo{
+	margin: auto;
+	text-align: center;
+	padding: .5em;
+	font-size: 2.5em;
+	font-family: 'Coming Soon';
+	width: 50%;
+	text: justify;
 }
 
 .footer-area{
-	background-color: black;
+	background-color: #333333;
 	color: white;
+	font-family: "Helvetica Neue";
+	font-size: rem-calc(13);
 }
 
 .logo{

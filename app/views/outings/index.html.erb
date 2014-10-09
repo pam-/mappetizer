@@ -25,17 +25,16 @@
 				<label> Name your Outing </label>
 				<input type="text" placeholder="">
 			</div>
+			<div class="button small search"> Search</div>
 			<div class="button small save_location"></div>
 		</form>
 
 			<%=link_to 'Show Outings', user_path(current_user) %>
-	</div>	
+	</div>
 
 	<div class='small-4 columns'>
-		<div class='row' >
-			<div class="new_outing_info">
-				<!-- new outing goes here -->
-			</div>
+		<div class='row new_outing_info'>
+		
 		</div>
 		
 		<div class='row'>	
@@ -43,6 +42,10 @@
 				<!-- new activity goes here -->
 			</div>
 		</div>	
+
+		<div class="row">
+			<div class="button send-email"> See my mappetite! </div>
+	 	</div>
 	</div>
 
 	<div class="small-8 columns" id="map">

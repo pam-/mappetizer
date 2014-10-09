@@ -3,7 +3,6 @@ class OutingsController < ApplicationController
 	# before_action :authenticate_user!, except: [:show, :index]
 
 	def index
-	  # @outings = Outing.order(:created_at)
 	  @outings = Outing.all
 	  @outing = Outing.where(user_id: current_user.id).last
 
@@ -19,6 +18,12 @@ class OutingsController < ApplicationController
 
 	def show
 	  @outing = Outing.find(params[:id])
+	  @activities = @outing.activities
+
+	  respond_to do |format|
+	  	format.html
+	  	format.json { render json: @outing }
+	  end 
 	end
 
 	def edit

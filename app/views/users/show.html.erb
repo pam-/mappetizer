@@ -1,14 +1,25 @@
-<% @outings.each do |o| %>
-			<div>
-				<ul>
-					<li><%= o.name  %></li>
-					<li><%= o.date  %></li>
-					<li><%= o.city  %></li>
-					<li><%= link_to 'View', outing_path(o)  %></li>
-					<li><%= link_to 'Edit', edit_outing_path(o) %></li>
-					<li><%= link_to 'Delete', outing_path(o), method: :delete %></li>
-				</ul>			
-			</div>
-<% end %>
+<!-- outings on the user page, we want anybody to be able to see it with the link sent over email -->
 
-<%= @outings.inspect %>
+<%= @outings.each do |outing| %>
+<div class="info">	
+	<h2> <%= outing.name  %> 
+		<small> <%= outing.date  %>
+		</small> 
+		<span> 
+			<%= outing.city  %> 
+		</span>
+	</h2>
+
+	<div>
+		<%= link_to 'View', outing_path(outing)  %>
+	</div>
+
+	<div>
+		<%= link_to 'Edit', edit_outing_path(outing) %>
+	</div>
+
+	<div>
+		<%= link_to 'Delete', outing_path(outing), method: :delete %>		
+	</div>
+</div>
+<% end %>

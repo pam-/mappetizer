@@ -1,5 +1,6 @@
 var myLayer;
 var geocoder;
+var newOutingId;
 function ready(){
 
 	L.mapbox.accessToken = 'pk.eyJ1IjoicGFtLSIsImEiOiJNT09NSzgwIn0.AWl1AY_kO1HMnFHwxb9mww';
@@ -8,50 +9,60 @@ function ready(){
 
 	var locationConfirm = $('.save_location');
 	locationConfirm.hide();
-	// $('#outing_name').hide();
+	$('.new_outing_info').hide();
+	$('.send-email').hide();
 
-	$('.container input[type="time"]').keypress(function(event){
-		if(event.which === 13) {
-			event.preventDefault();
-			var userLocation = $('#location').val();
-			var startDate = $('#start_date').val();
-			var startTime = $('#start_time').val();
-			var endDate = $('#end_date').val();
-			var endTime = $('#end_time').val();
-			var outingName = userLocation + ' Outing';
-			var nameField = $('#outing_name input[type="text"]');
+	$('.search').on('click', function(event){
+		event.preventDefault();
+		var userLocation = $('#location').val();
+		var startDate = $('#start_date').val();
+		var startTime = $('#start_time').val();
+		var endDate = $('#end_date').val();
+		var endTime = $('#end_time').val();
+		var outingName = userLocation + ' Outing';
+		var nameField = $('#outing_name input[type="text"]');
 
-			// Generating map
-			mapGen(userLocation)
+		if (nameField.val() != "") {
+			outingName = nameField.val();
+		} else {
+			outingName = userLocation + 'Outing'
+		}
 
-			//Generating markers
-			eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=7LJ23Y6JWNBM7WUIJ424'
-			$.ajax({
-				type: 'GET',
-				url: eventUrl,
-				success: function(result){
-					console.log(result.events)
-					return render(result.events)
-					//use event resource_uri to make other get request
-				}
-			})			
+		// Generating map
+		mapGen(userLocation)
 
-			// $('#outing_name').show();
-			// nameField.attr('placeholder', outingName);
-			// nameField.keypress(function(event){
-			// 	if(event.which === 13){
-			// 		event.preventDefault();
-			// 		outingName = $(this).val();
-			// 	}
-			// })
+		//Generating markers
+		eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=7LJ23Y6JWNBM7WUIJ424'
+		$.ajax({
+			type: 'GET',
+			url: eventUrl,
+			success: function(result){
+				console.log(result.events)
+				return render(result.events)
+			}
+		})			
 
-			locationConfirm.show()
-			locationConfirm.html('<p>Save ' + userLocation + ' outing.</p>');
-			locationConfirm.on('click', function(event){
-				sideBar(userLocation, startDate, startTime, endDate, endTime, outingName);				
-			});
+		locationConfirm.show()
+		locationConfirm.html('<p>Save ' + userLocation + ' outing.</p>');
+		locationConfirm.on('click', function(event){
+			sideBar(userLocation, startDate, startTime, endDate, endTime, outingName);				
+		});
+	})
+
+
+	// outing show page
+	var outingId = $('.info').data('id')
+	var outingCity = $('.info').data('city')
+	$.ajax({
+		type: 'GET',
+		url: '/outings/' + outingId + '/activities',
+		dataType: 'json',
+		success: function(result){
+			mapGen(outingCity)
+			finalRender(result)
 		}
 	})
+
 }
 
 function mapGen(userLocation){
@@ -126,6 +137,7 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 			type: 'GET',
 			url: url,
 			success: function(result){
+				console.log(result.category.name)
 				save(result);
 			}
 		})
@@ -133,13 +145,18 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 }
 
 function save(result){
+	console.log(result.category.name)
+	var category;
 	var name = result.name.text;
-	var category = result.category.name;
 	var id = result.id;
 	var url = result.url;
-
-	if (!category) {
+	var longitude = result.venue.longitude;
+	var latitude = result.venue.latitude;
+	console.log(longitude)
+	if (!result.category) {
 		category = "no category";
+	} else {
+		category = result.category;
 	}
 	if (!url) {
 		url = "no url"
@@ -150,13 +167,14 @@ function save(result){
 		data: {
 			activity: {
 				name: name,
-				category: category,
+				category: category.name,
 				event_id: id,
-				event_url: url
+				event_url: url,
+				longitude: longitude,
+				latitude: latitude
 			}
 		},
 		success: function(){
-			console.log('success of save')
 			$('.new_outing').hide();
 			displayActivityInfo(name)
 		}
@@ -178,8 +196,9 @@ function sideBar(userLocation, startDate, startTime, endDate, endTime, outingNam
 				city: userLocation
 			}
 		},
-		success: function(){
+		success: function(result){
 			console.log('success of sidebar')
+			newOutingId = result.id;
 			$('.new_outing').hide();
 			displayOutingInfo(outingName, startDate, startTime, endDate, endTime, userLocation)
 		}
@@ -188,21 +207,56 @@ function sideBar(userLocation, startDate, startTime, endDate, endTime, outingNam
 
 function displayOutingInfo(name, start, sTime, end, eTime, location){
 	var infoContainer = $('.new_outing_info');
-	infoContainer.addClass('active');
+	infoContainer.show();
 
-	$(infoContainer).append('<h2>' + name + '</h2>');
+	$(infoContainer).html('<h2>' + name + '</h2>');
+	$(infoContainer).append( '<p>' + start + '-' + sTime + ' until ' + end + '-' + eTime + '</p>');
+
 
 }
 
 // This is the function that displays the activies under the outing name
 function displayActivityInfo(name){
 	console.log('reached inside of display activity info');
+	$('.send-email').show();
 	var actInfoContainer = $('.new_activity_info');
 	actInfoContainer.addClass('active');
 
-	// $(actInfoContainer).appendClass()
-
-	$(actInfoContainer).append(name);
+	$(actInfoContainer).append('<p>' + name + '</p>');
 }
+
+function finalRender(result, city) {
+	for(var i = 0; i < result.length; i++){
+		var activity = result[i];
+		var longitude = activity.longitude;
+		var latitude = activity.latitude;
+		var name = activity.name;
+		finalMarkers(longitude, latitude);
+	}
+}
+
+function finalMarkers(longitude, latitude, name){
+	myLayer = L.mapbox.featureLayer().addTo(map);
+	var geojson = {
+		type: 'FeatureCollection',
+		features: [{
+			type: 'Feature',
+			properties: {
+				title: name,
+				'marker-color': '#D79488',
+				'marker-size': 'large',
+			},
+			geometry: {
+				type: 'Point',
+				coordinates: [longitude, latitude]
+			}
+		}]
+	}
+	myLayer.setGeoJSON(geojson);
+}
+
+$('.send-email').on('click', function(){
+	window.location.href = "/outings/" + newOutingId; 
+})
 
 $(document).ready(ready);

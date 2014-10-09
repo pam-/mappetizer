@@ -5,9 +5,12 @@
 				<span> </span>
 				<small><%= @outing.date %></small></h2>
 		</div>
-		<div class='row'>		
-			<h3><%= @outing.city  %></h3> 	
-			<p> </p>			
+
+	<% @activities.each do |activity| %>
+		<div class='row'>	
+			<h3> Event: <%= activity.name %><h3>
+			<p> Category: <%= activity.category %><p>
+			<%= link_to 'RSVP', activity.event_url %>
 		</div>
 		
 	

@@ -10,7 +10,7 @@ function ready(){
 	var locationConfirm = $('.save_location');
 	locationConfirm.hide();
 	$('.new_outing_info').hide();
-	$('.send-email').hide();
+	$('.send-email').hide(); 
 
 	$('.search').on('click', function(event){
 		event.preventDefault();
@@ -19,7 +19,7 @@ function ready(){
 		var startTime = $('#start_time').val();
 		var endDate = $('#end_date').val();
 		var endTime = $('#end_time').val();
-		var outingName = userLocation + ' Outing';
+		var outingName = userLocation + ' outing';
 		var nameField = $('#outing_name input[type="text"]');
 
 		if (nameField.val() != "") {
@@ -32,7 +32,7 @@ function ready(){
 		mapGen(userLocation)
 
 		//Generating markers
-		eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=7LJ23Y6JWNBM7WUIJ424'
+		eventUrl = 'https://www.eventbriteapi.com/v3/events/search/?venue.city='+userLocation+'&start_date.range_start=' + startDate + 'T' + startTime + '%3A00Z&start_date.range_end=' + endDate + 'T' + endTime + '%3A00Z&token=4AP25GNUCXVYPVTGLP3V'
 		$.ajax({
 			type: 'GET',
 			url: eventUrl,
@@ -65,6 +65,7 @@ function ready(){
 			}
 		})
 	};
+}
 
 function mapGen(userLocation){
 	geocoder.query(userLocation, showMap);
@@ -133,12 +134,10 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 	myLayer.on('click', function(event){
 		event.layer.unbindPopup();
 		url = event.layer.feature.properties.url + '?token=4AP25GNUCXVYPVTGLP3V'
-		console.log(url)
 		$.ajax({
 			type: 'GET',
 			url: url,
 			success: function(result){
-				console.log(result.category.name)
 				save(result);
 			}
 		})
@@ -146,15 +145,14 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 }
 
 function save(result){
-	console.log(result.category.name)
 	var category;
 	var name = result.name.text;
+	var venue = result.venue.name;
 	var id = result.id;
 	var url = result.url;
 	var longitude = result.venue.longitude;
 	var latitude = result.venue.latitude;
-	console.log(longitude)
-	if (!result.category) {
+	if (result.category === null) {
 		category = "no category";
 	} else {
 		category = result.category;
@@ -168,7 +166,7 @@ function save(result){
 		data: {
 			activity: {
 				name: name,
-				category: category.name,
+				category: category,
 				event_id: id,
 				event_url: url,
 				longitude: longitude,
@@ -177,7 +175,7 @@ function save(result){
 		},
 		success: function(){
 			$('.new_outing').hide();
-			displayActivityInfo(name)
+			displayActivityInfo(name, venue)
 		}
 	})
 }
@@ -212,18 +210,16 @@ function displayOutingInfo(name, start, sTime, end, eTime, location){
 
 	$(infoContainer).html('<h2>' + name + '</h2>');
 	$(infoContainer).append( '<p>' + start + '-' + sTime + ' until ' + end + '-' + eTime + '</p>');
-
-
 }
 
-// This is the function that displays the activies under the outing name
-function displayActivityInfo(name){
+function displayActivityInfo(name, venue){
 	console.log('reached inside of display activity info');
 	$('.send-email').show();
 	var actInfoContainer = $('.new_activity_info');
 	actInfoContainer.addClass('active');
 
-	$(actInfoContainer).append('<p>' + name + '</p>');
+	$(actInfoContainer).append('<h4>' + name + '</h4><p>' + venue + '</p>');
+
 }
 
 function finalRender(result, city) {
@@ -256,8 +252,36 @@ function finalMarkers(longitude, latitude, name){
 	myLayer.setGeoJSON(geojson);
 }
 
+var email1 = $('#email1').val()
+var email2 = $('#email2').val()
+var email3 = $('#email3').val()
+
+var emails = [$('#email1'), $('#email2'), $('#email3')]
+
+for(var i = 0; i < emails.length; i++){
+	var email = emails[i];
+	email.hide();
+}
+
 $('.send-email').on('click', function(){
-	window.location.href = "/outings/" + newOutingId; 
+	// window.location.href = "/outings/" + newOutingId;
+
+	for(var i = 0; i < emails.length; i++){
+		var email = emails[i];
+		email.show();
+	}
+
+	$.ajax({
+		type: 'POST',
+		url: '/new_mail',
+		data: { 
+			participants: [email1, email2, email3],
+			url: "http://localhost:3000/outings/" + newoutingId
+		 },
+		success: function(){
+			console.log('something happened')
+		}
+	})
 })
 
 $(document).ready(ready);

@@ -7,9 +7,9 @@
 
 		<h1>Dear friend,</h1>
 		<p>I'd like you to join me on an awesome adventure!</p>
-		<p>Here's the link for more info: <%= link_to @outing.name, outing_path(@outing) %> </p>
+		<p>Here's the link for more info: <%= @outing_link %> </p>
 		<p>Hope you can make it,</p>
-		<p> <%= @user.name %> </p>
+		<p> <%= @user.email %> </p>
 
 	</body>
 </html>

@@ -37,7 +37,7 @@ http://ADD_URL_HERE.herokuapp.com/
 
 ##ERD
 
-![ERD](/images/erd.png)
+![](erd.png)
 
 ## Local Setup
 

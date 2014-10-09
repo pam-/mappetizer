@@ -1,5 +1,6 @@
 *{
 	box-sizing:border-box;
+	font-family: 'Open Sans', sans-serif;
 }
 
 html, body{
@@ -7,33 +8,13 @@ html, body{
 }
 
 .icon{
-	color: purple;
+	color: #ff00ff;
 	text-align: center;
-	font-size: 400px;
-	padding-top: 0;
-	margin-top: 0;
-	line-height: 1;
+	font-size: 15em;
+	line-height: .8em;
+	padding: .3em 0em .3em 0em;
+	margin: 0;
 }
-
-button{
-	padding-top: .5em 0;
-}
-
-#map{
-	// width: 50%;
-	height: 500px;
-}
-
-.wrapper{
-	min-height: 100%;
-	// background: url(/assets/world_map2.jpg) no-repeat;
-	background-size: 80%;
-	background-position: 10% 0;
-}
-
-// .logo{
-// 	padding: .5em;
-// }
 
 .sub-logo{
 	margin: auto;
@@ -52,7 +33,7 @@ button{
 		text-align: center;
 		margin-bottom: 0;
 	}
-	ul li{
+ul li{
 		color: white;
 		font-family: "Helvetica Neue";
 		line-height: 4em;
@@ -62,15 +43,27 @@ button{
 	}
 }
 
-.button a{
-	color: white;
+li.button{
+	color: #000000;
+	background-color: #00ffff;
+	font-weight: bold;
+	border: 6px solid black;
 }
 
-.logo{
-	margin: auto;
-	text-align: center;
-	padding: 1em .5em .5em .5em;
-	font-size: 4em;
+.button a{
+	color: #000000;
+	font-weight: bold;
+	font-size: 1.5em;
+	background-color: #00ffff;
+}
+
+.button.right-side a{
+	color: #000000;
+	background-color: #ffff00;
+}
+
+.button.right-side{
+	background-color: #ffff00;	
 }
 
 .button-group{
@@ -80,14 +73,17 @@ button{
 	padding-bottom: 1.5em;
 }
 
-.space{
-	padding: .3em 0em .3em 1em;
-}
-
 .new_outing_info{
 	display: hidden;
 }
 
 .new_outing_info.active{
 	display: block;
+}
+
+.wrapper{
+	min-height: 100%;
+	// background: url(/assets/world_map2.jpg) no-repeat;
+	background-size: 80%;
+	background-position: 10% 0;
 }

@@ -1,57 +1,22 @@
-<div class="row">
-<!--   <div class="small-12 columns"> -->
-     <!-- <h1 class="logo">Mappetizer</h1> -->
-     <h1 class="icon">&#8984;</h1>
-     <h2 class="sub-logo">Mappetize your plans</h2>
-     	<!-- Locate. Plan. Share.-->
-
-			<!-- <div class="small-12 columns"> -->
-
-		 	<div class="row">
-		    <% if !user_signed_in? %>
-			  
-			  <div class="large-5 large-centered columns">
-			  	
-			  	<ul class="stack-for-large round secondary button-group even-2">
-			  		
-			  		<li class="button">
-			    <%= link_to "Sign in", new_user_session_path %>
-			    	</li>			  	
-				  	
-				  	<li class="button">
-					     	<%= link_to "Register", new_user_registration_path%>
-					  </li>
-
-				 </ul>
-
-				</div>
-
-			</div>  
-
-		       
-		 
-		  <div class="row">
-		    
-		    <% else %>
-
-		    <div class="large-5 large-centered columns">
-		      	
-		    	<ul class="stack-for-large round secondary button-group even-2">
-
-		      	<li class="button">
-		      		<%= link_to "My Outings", user_path(current_user)%>
-						</li>
-
-						<li class="button">
-							<%= link_to "Create an Outing", outings_path%>
-			      </li>	
-		  		
-		  		</ul>
-		    
-		    </div>
-		    
-		  </div>
- 
- 	      <% end %>
-
+<div class="row first">
+  <div class="small-12 centered columns">
+  <h1 class="icon">&#8984;</h1>
+<!--   <h2 class="sub-logo">Mappetize your plans.</h2> -->
+	   <% if !user_signed_in? %>
+            <ul class="stack-for-medium round secondary button-group even-2">
+			  <li class="button left-side">
+			    <%= link_to "SIGN IN", new_user_session_path %></li>	
+			  <li class="button right-side">
+				<%= link_to "REGISTER", new_user_registration_path%></li>
+		    </ul>
+         </div>
+	   <% else %>
+		    <ul class="stack-for-medium round secondary button-group even-2">
+			   <li class="button left-side">
+		      		<%= link_to "My Outings", user_path(current_user)%></li>
+			   <li class="button right-side">
+					<%= link_to "Create an Outing", outings_path%></li>	
+		  	</ul>
+       <% end %>
+  </div>
 </div>

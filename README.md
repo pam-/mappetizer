@@ -1,13 +1,14 @@
 #Mappetizer
 ===========
 
-Overview
+##GA WDI DC August 2014, Project 2
 
-This application was built in October 2014 to exercise newly aquired skills in ruby, ruby on rails, and javascript. Four members of the second cohort of Web Development Immersive Students at the General Assembly Washington, D.C. worked on this project: Pam Assogba, Wade Buckland, Martin Johnson, and Lisa Snider. It was completed as part of a 4-day sprint modeling the agile software development processes.
+##Overview
 
-The the purpose of the application is to enable friends to better coordinate group outings by listing potential events to attend depending on a chosen city and date range. 
+**Mappetize** is a social app that enables friends to more effectively plan group outings. Four students of the August cohort of Web Development Immersive at General Assembly's Washington, D.C. campus developed the application: Pam Assogba, Wade Buckland, Martin Johnson, and Lisa Snider. The team built the app from the ground up during a 4-day sprint modeling the agile software development process. 
 
-Sample user stories completed were:
+
+User stories completed were:
 - As a guest, I can visit a homepage that links to sign-in and sign-up pages.
 - As a user, I can sign-in to my account.
 - As a guest, I can sign-up for an account.
@@ -22,9 +23,10 @@ Eventbrite: http://developer.eventbrite.com/
 
 Based on date and location selections by the user, event data are pulled from the Eventbrite API and subsequently passed to the Mapbox API.
 
+##Backlog 
 For list of user stories and backlog, see our public Pivitol Tracker: https://www.pivotaltracker.com/s/projects/1181394.
 
-Technology used:
+##Technology used:
 - Ruby on Rails 4.1.6.
 - PostgreSQL Database
 - The Devise gem for authentication and authorization.
@@ -32,8 +34,7 @@ Technology used:
 - The mail gem, which allows users to send emails from the app.
 - The letter opener gem that allowed us to preview email in the browser instead of sending it and not set-up email in development.
 
-Find an the application here:
-http://ADD_URL_HERE.herokuapp.com/
+[Visit Mappetize] (http://fathomless-ravine-7965.herokuapp.com/)
 
 ##ERD
 
@@ -49,3 +50,6 @@ http://ADD_URL_HERE.herokuapp.com/
 
     Open the page locally on http://localhost:3000.
     Note that you will need to request access tokens for both the Eventbrite and Mapbox apis and replace them as appropriate within the code. 
+    
+===========
+###Written by Team Appetize

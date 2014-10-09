@@ -1,21 +1,24 @@
 <div class="row">
   <div class="small-12 columns">
   	<img class="bg_img">
-     <h1 class="logo">Mappetizer.</h1>
+     <!-- <h1 class="logo">Mappetizer</h1> -->
+     <h1 class="icon">&#8984;</h1>
+     <h2 class="sub-logo">Mappetize your plans</h2>
+     	<!-- Locate. Plan. Share.-->
    <div class="row">  
-   	<div class="small-12 columns">
+   	<!-- <div class="small-12 columns"> -->
      <ul>
 	   <div class="button-group">
 	      <% if !user_signed_in? %>
 			  
-			  <div class="row">
+			  <div> <!-- class="row" -->
 			  	<div class="large-6 columns button">
-			    	<%= link_to "Sign in", new_user_session_path, class: "button large radius"%>
+			    	<%= link_to "Sign in", new_user_session_path, class: "button [radius round]"%>
 			  	</div>
 
 			  	<div class="large-6 columns button">
 				    <span class="space"></span>
-			       	<%= link_to "Register", new_user_registration_path, class: "button large radius"%>
+			       	<%= link_to "Register", new_user_registration_path, class: "button [radius round]"%>
 		  		</div>
 			  </div>  
 
@@ -23,10 +26,10 @@
 		    
 		    <!-- <div class="row"> -->
 		    	<div class="button">
-		      	<%= link_to "My Outings", user_path(current_user), class: "button large radius"%>
+		      	<%= link_to "My Outings", user_path(current_user), class: "button medium radius"%>
 					</div>
 					<div class="button">
-						<%= link_to "Create an Outing", outings_path, class: "button large radius"%>
+						<%= link_to "Create an Outing", outings_path, class: "button medium radius"%>
 		      </div>	
 		   <!--  </div> -->
 	    	
@@ -34,7 +37,7 @@
  	      <% end %>
 	   </div>
 	 </ul>
-	</div>
+<!-- 	</div> -->
   	</div>
   </div>
 

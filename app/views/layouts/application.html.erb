@@ -66,13 +66,14 @@
 		    </nav>
         </div>
 	</header>
+  
+  <div class="wrapper">
     <%= yield %>
-  	
-    <div class="full-width footer-area">
-      <div class="row">
-        <div class="large-12 columns">
+  </div>
+
+    <div class="footer-area">
           About Us
- 	      Blog
+ 	        Blog
   	      Press
   	      Jobs
   	      Privacy
@@ -80,12 +81,10 @@
           <span>
     	    &copy; 2014 Mappetizer
   	      </span>
-        </div>
-      </div>
     </div>
-  	<footer>
 
-	</footer>
+  	<footer></footer>
+
     <%= javascript_include_tag "application" %>
   </body>
 </html>

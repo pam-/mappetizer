@@ -7,6 +7,10 @@ html, body{
 	height: 100%;
 }
 
+#awesome{
+	padding-top: 150px;
+}
+
 .icon{
 	color: #ff00ff;
 	text-align: center;
@@ -16,8 +20,13 @@ html, body{
 	margin: 0;
 }
 
+.side_box{
+	padding-top: 300px;
+}
+
 #map{
 	height: 300px;
+	border-radius: 50%;
 }
 
 /*.logo{

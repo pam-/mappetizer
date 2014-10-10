@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
+  post '/new_email' => 'users#new_email'
+
 end

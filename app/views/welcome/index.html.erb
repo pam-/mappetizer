@@ -3,7 +3,7 @@
   <h1 class="icon">&#8984;</h1>
 <h2 class="sub-logo">Mappetize your plans.</h2>
 	   <% if !user_signed_in? %>
-            <ul class="stack-for-large round secondary button-group even-2">
+            <ul class="stack-for-medium round secondary button-group even-2">
 			  <li class="button left-side">
 			    <%= link_to "SIGN IN", new_user_session_path %></li>	
 			  <li class="button right-side">
@@ -11,9 +11,9 @@
 		    </ul>
          </div>
 	   <% else %>
-		    <ul class="stack-for-large round secondary button-group even-2">
+		    <ul class="stack-for-medium round secondary button-group even-2">
 			   <li class="button left-side">
-		      		<%= link_to "REVIEW MY OUTINGS", user_path(current_user)%></li>
+		      		<%= link_to "SHOW MY OUTINGS", user_path(current_user)%></li>
 			   <li class="button right-side">
 					<%= link_to "CREATE AN OUTING", outings_path%></li>	
 		  	</ul>

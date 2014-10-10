@@ -7,17 +7,21 @@
 			<input type="text" id="location" placeholder="City">
 			<div class="row">
 				<div class="small-7 columns">
+					<label> Start date and time </label>
 					<input type="date" id="start_date"> 
 				</div>
 				<div class="small-5 columns">
+					<br>
 					<input type="time" id="start_time">
 				</div>
 			</div>
 			<div class="row">
 				<div class="small-7 columns">
+					<label> End date and time </label>
 					<input type="date" id="end_date"> 
 				</div>
 				<div class="small-5 columns">
+					<br>
 					<input type="time" id="end_time">
 				</div>
 			</div>
@@ -25,11 +29,13 @@
 				<label> Name your Outing </label>
 				<input type="text" placeholder="">
 			</div>
-			<div class="button small search"> Search</div>
-			<div class="button small save_location"></div>
+			<div class="row"> 
+				<div class="button small search"> Search</div>
+			</div>
+			<div class="row">
+				<div class="button small save_location"></div>
+			</div>
 		</form>
-
-			<%=link_to 'Show Outings', user_path(current_user) %>
 	</div>
 
 	<div class='small-4 columns'>
@@ -46,16 +52,16 @@
 		<div class="row">
 			<div class="button send-email"> See my mappetite! </div>
 	 	</div>
-
-	 	<div class="row">
-	 		<div class="small-4 columns">
-	 			<input type="email" id="email1">
-	 			<input type="email" id="email2">
-	 			<input type="email" id="email3">
-	 			<div class="button" id="send-button"> Send </div>
-	 		</div>
-	 	</div>
 	</div>
+
+<div class="email-form">
+	<div class="emails-input">
+		<input type="email" id="email1">
+		<input type="email" id="email2">
+		<input type="email" id="email3">
+		<div class="button" id="send-button"> Send </div>
+	</div>
+</div>
 
 	<div class="small-8 columns" id="map">
 		<!-- map goes here -->

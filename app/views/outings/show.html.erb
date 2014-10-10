@@ -1,9 +1,13 @@
 <div class="info row" data-id="<%= @outing.id %>" data-city="<%= @outing.city %>">
-	<div class="small-4 columns">
+	
+<!-- 	<div class="small-6 columns">
+	 -->
 		<div class='row'>
+
 			<h2> <%= @outing.name  %>
-				<span> </span>
+
 				<small><%= @outing.date %></small></h2>
+
 		</div>
 
 	<% @activities.each do |activity| %>
@@ -13,16 +17,6 @@
 			<%= link_to 'RSVP', activity.event_url %>
 	<% end %>
 		</div>
-		
-	
-		<% @activities.each do |activity| %>
-			<div class='row'>	
-				<h4><%= activity.name %><h4>
-				<p><%= activity.category %><p>
-				<%= link_to 'RSVP', activity.event_url %>
-			</div>
-		<% end %> 
-	</div>
 
-	<div class="small-8 columns" id="map"></div>
+	<div class="small-6 columns" id="map"></div>
 </div>

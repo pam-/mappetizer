@@ -22,11 +22,11 @@ function ready(){
 		var endTime = $('#end_time').val();
 		var outingName = userLocation + ' outing';
 		var nameField = $('#outing_name input[type="text"]');
+		nameField.attr('placeholder', outingName);
+
 
 		if (nameField.val() != "") {
 			outingName = nameField.val();
-		} else {
-			outingName = userLocation + 'Outing'
 		}
 
 		// Generating map
@@ -54,18 +54,6 @@ function ready(){
 	// outing show page
 	var outingId = $('.info').data('id')
 	var outingCity = $('.info').data('city')
-	
-	if (outingId !== undefined) {
-		$.ajax({
-			type: 'GET',
-			url: '/outings/' + outingId + '/activities',
-			dataType: 'json',
-			success: function(result){
-				mapGen(outingCity)
-				finalRender(result)
-			}
-		})
-	};
 
 	if (outingId !== undefined) {
 		$.ajax({
@@ -231,7 +219,7 @@ function displayActivityInfo(name, venue){
 	var actInfoContainer = $('.new_activity_info');
 	actInfoContainer.addClass('active');
 
-	$(actInfoContainer).append('<h4>' + name + '</h4><p>' + venue + '</p>');
+	$(actInfoContainer).append('<h4>' + name + '</h4><p> Venue:<span>' + venue + '</span></p>');
 
 }
 

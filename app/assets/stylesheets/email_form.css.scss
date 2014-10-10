@@ -11,14 +11,23 @@
 	height: 50px;
 }
 
-.email-form{
-	width: 30%;
-	padding: 30px;
-	background: #00ffff;
-	.emails-input{
-		width: 100%;
+.new_outing_info{
+	h2{
+		margin-top: 100px;
+		background: #00ffff;
+		padding: 0;
+		margin-left: 0;
+	}
+	p{
+		color: #919191;
 	}
 }
 
-
-
+.new_activity_info{
+	h4{
+		font-size: 20px;
+	}
+	span{
+		font-weight: bolder;
+	}
+}

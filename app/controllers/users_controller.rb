@@ -5,12 +5,12 @@ class UsersController < ApplicationController
 	  @outings = Outing.where(:user_id => @user.id)
 	end
 
-	def new_mail
+	def new_email
 		@user = current_user
 		@participants = params[:participants]
 		@outing_link = params[:url]
 		begin
-			ParticipantMailer.send_mail(@participants, @outing_link, @user).deliver
+			ParticipantMailer.send_email(@participants, @outing_link, @user).deliver
 		end 
 	end
 

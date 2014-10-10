@@ -1,0 +1,33 @@
+#map{
+	height: 400px;
+	width: 50%;
+	border-radius: 10px;
+	margin-top: 100px;
+	position: fixed;
+	right: 50px;
+}
+
+.save_location{
+	height: 50px;
+}
+
+.new_outing_info{
+	h2{
+		margin-top: 100px;
+		background: #00ffff;
+		padding: 0;
+		margin-left: 0;
+	}
+	p{
+		color: #919191;
+	}
+}
+
+.new_activity_info{
+	h4{
+		font-size: 20px;
+	}
+	span{
+		font-weight: bolder;
+	}
+}

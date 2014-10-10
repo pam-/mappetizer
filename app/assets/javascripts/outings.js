@@ -22,11 +22,11 @@ function ready(){
 		var endTime = $('#end_time').val();
 		var outingName = userLocation + ' outing';
 		var nameField = $('#outing_name input[type="text"]');
+		nameField.attr('placeholder', outingName);
+
 
 		if (nameField.val() != "") {
 			outingName = nameField.val();
-		} else {
-			outingName = userLocation + 'Outing'
 		}
 
 		// Generating map
@@ -54,18 +54,6 @@ function ready(){
 	// outing show page
 	var outingId = $('.info').data('id')
 	var outingCity = $('.info').data('city')
-	
-	if (outingId !== undefined) {
-		$.ajax({
-			type: 'GET',
-			url: '/outings/' + outingId + '/activities',
-			dataType: 'json',
-			success: function(result){
-				mapGen(outingCity)
-				finalRender(result)
-			}
-		})
-	};
 
 	if (outingId !== undefined) {
 		$.ajax({
@@ -231,7 +219,7 @@ function displayActivityInfo(name, venue){
 	var actInfoContainer = $('.new_activity_info');
 	actInfoContainer.addClass('active');
 
-	$(actInfoContainer).append('<h4>' + name + '</h4><p>' + venue + '</p>');
+	$(actInfoContainer).append('<h4>' + name + '</h4><p> Venue:<span>' + venue + '</span></p>');
 
 }
 
@@ -269,22 +257,14 @@ var email1 = $('#email1').val();
 var email2 = $('#email2').val();
 var email3 = $('#email3').val();
 
-var emails = [$('#email1'), $('#email2'), $('#email3')];
+var emails = $('.email-form');
 var send = $('#send-button');
 send.hide();
-
-for(var i = 0; i < emails.length; i++){
-	var email = emails[i];
-	email.hide();
-}
+emails.hide();
 
 $('.send-email').on('click', function(){
 	// window.location.href = "/outings/" + newOutingId;
-
-	for(var i = 0; i < emails.length; i++){
-		var email = emails[i];
-		email.show();
-	}
+	emails.show();
 	send.show();
 })
 
@@ -297,7 +277,7 @@ send.on('click', function(){
 			url: "http://localhost:3000/outings/" + newOutingId
 		 },
 		success: function(){
-			console.log('something happened')
+			$('body').load('/outings/' + newOutingId)
 		}
 	})
 })

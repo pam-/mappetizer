@@ -5,7 +5,7 @@ var newOutingId;
 function ready(){
 
 	L.mapbox.accessToken = 'pk.eyJ1IjoicGFtLSIsImEiOiJNT09NSzgwIn0.AWl1AY_kO1HMnFHwxb9mww';
-	geocoder = L.mapbox.geocoder('mapbox.places-city-v1'),
+	geocoder = L.mapbox.geocoder('mapbox.places-city-v1');
   map = L.mapbox.map('map', 'pam-.jmeb29bh');
 
 	var locationConfirm = $('.save_location');
@@ -104,10 +104,6 @@ function markerGen(longitude, latitude, event_name, event_description, event_ven
 			type: 'Feature',
 			properties: {
 				title: event_name,
-				// description: event_description,
-				// venue: event_venue,
-				// start: event_start,
-				// end: event_end,
 				'marker-color': '#D79488',
 				'marker-size': 'large',
 				url: event_url
